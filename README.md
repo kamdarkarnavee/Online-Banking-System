@@ -12,15 +12,15 @@ Janette     | What tasks did I work on / complete? |Understand Requirements|Sett
 Janette     | What am I planning to work on next?  |Set Up a MySQL database on an EC2| Learn Spring Boot| Pending | Pending | Pending | Pending 
 Janette     | What tasks are blocked?              |None | None | None | None | Pending | Pending | Pending
 Janette     | XP Core Value                        |
-Karnavee    | What tasks did I work on / complete? |jhgfd|hgfds|gfdsf|gfdgf
+Karnavee    | What tasks did I work on / complete? |Understand Requirements||Learn Spring Boot|gfdgf
 Karnavee    | What am I planning to work on next?  | 
 Karnavee    | What tasks are blocked?              |
 Karnavee    | XP Core Value                        |
-Mrunali     | What tasks did I work on / complete? |jhgfd|hgfds|gfdsf|gfdgf
+Mrunali     | What tasks did I work on / complete? |Understand Requirements||Learn Spring Boot|gfdgf
 Mrunali     | What am I planning to work on next?  | 
 Mrunali     | What tasks are blocked?              |
 Mrunali     | XP Core Value                        |
-Prathyusha  | What tasks did I work on / complete? |jhgfd|hgfds|gfdsf|gfdgf
+Prathyusha  | What tasks did I work on / complete? |Understand Requirements||Learn Spring Boot|Add Payee
 Prathyusha  | What am I planning to work on next?  | 
 Prathyusha  | What tasks are blocked?              |
 Prathyusha  | XP Core Value                        |
