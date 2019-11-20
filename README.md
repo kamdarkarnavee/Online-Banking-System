@@ -21,6 +21,6 @@ Mrunali     | What am I planning to work on next?  |
 Mrunali     | What tasks are blocked?              |
 Mrunali     | XP Core Value                        |
 Prathyusha  | What tasks did I work on / complete? |Understand Requirements||Learn Spring Boot|Add Payee
-Prathyusha  | What am I planning to work on next?  | 
+Prathyusha  | What am I planning to work on next?  | | | Learn Spring Boot|Remove Payee
 Prathyusha  | What tasks are blocked?              |
 Prathyusha  | XP Core Value                        |
