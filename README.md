@@ -14,7 +14,7 @@ October 26   | Understand Requirements              | Create Meeting Minute Docu
 November 2   | Create Meeting Minute Documents      | Set Up a MySQL database on an EC2    | None
 November 9   | Setting Up Database                  | Learn Spring Boot                    | None
 November 20  | Learn Spring Boot                    | Add, get, and delete user            | None
-November 23  |                                      |                                      |
+November 23  |  Add, get, and delete user           | Check due balances, Check balance, close existing account | All tasks I am planning on work on next are blocked. 'Creating accounts' needs to be finished first.
 December 4   |                                      |                                      |
 
 ### Karnavee
