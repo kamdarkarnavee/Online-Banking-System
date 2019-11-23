@@ -13,7 +13,7 @@ Meeting Date | What tasks did I work on / complete? |  What am I planning to wor
 October 26   | Understand Requirements              | Create Meeting Minute Documents      | None
 November 2   | Create Meeting Minute Documents      | Set Up a MySQL database on an EC2    | None
 November 9   | Setting Up Database                  | Learn Spring Boot                    | None
-November 20  | Learn Spring Boot                    | Sign Up, Log In, Log Out             | None
+November 20  | Learn Spring Boot                    | Add, get, and delete user            | None
 November 23  |                                      |                                      |
 December 4   |                                      |                                      |
 
