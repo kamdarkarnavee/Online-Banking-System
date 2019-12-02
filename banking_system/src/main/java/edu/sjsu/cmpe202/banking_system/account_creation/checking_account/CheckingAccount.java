@@ -1,6 +1,8 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.checking_account;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.user.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.*;
@@ -13,7 +15,13 @@ public class CheckingAccount {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     private int checking_account_no;
-    private int user_id;
+   // private int user_id;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     private double balance;
     private Date account_creation_date;
     private boolean account_status;
@@ -26,12 +34,20 @@ public class CheckingAccount {
         this.checking_account_no = checking_account_no;
     }
 
-    public int getUser_id() {
-        return user_id;
+    //public int getUser_id() {
+    //    return user_id;
+    //}
+
+    //public void setUser_id(int user_id) {
+    //    this.user_id = user_id;
+    //}
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public double getBalance() {
