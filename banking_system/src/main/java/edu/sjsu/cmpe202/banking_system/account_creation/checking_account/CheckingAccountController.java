@@ -25,14 +25,9 @@ public class CheckingAccountController {
         return checkingAccountService.getAccountByNo(account_no);
     }
 
-    /*@PostMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addAccount(@RequestBody CheckingAccount account) {
         return checkingAccountService.addAccount(account);
-    }*/
-
-    @RequestMapping(value = "/{user_id}/checking/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CheckingAccount addAccount(@PathVariable(value = "user_id") int user_id, @RequestBody CheckingAccount account) {
-        return checkingAccountService.addAccount(user_id, account);
     }
 
     @PutMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
