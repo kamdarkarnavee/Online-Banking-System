@@ -1,25 +1,17 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.saving_account;
 
-import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
-import edu.sjsu.cmpe202.banking_system.user.User;
-import edu.sjsu.cmpe202.banking_system.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class SavingAccountService {
 
     @Autowired
     private SavingAccountRepository savingAccountRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     /**
      * Displays only the active accounts
@@ -47,25 +39,9 @@ public class SavingAccountService {
     /**
      * Add a new account
      */
-    public SavingAccount addAccount(int user_id, SavingAccount account) {
-        Optional<User> user = userRepository.findById(user_id);
-        if (!user.isPresent()) {
-            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
-        }
-
-        //tie User to CheckingAccount
-        account.setUser(user.get());
-        SavingAccount newAccount = savingAccountRepository.save(account);
-
-        //tie CheckingAccount to User
-        user.get().setSavingAccount(newAccount);
-
-        return newAccount;
-
-    }
-    /*public String addAccount(SavingAccount account) {
+    public String addAccount(SavingAccount account) {
         SavingAccount ca = savingAccountRepository.findById(account.getSaving_account_no()).orElse(null);
-        if (ca != null && ca.getUser().getId() == account.getUser().getId())
+        if (ca != null && ca.getUser_id() == account.getUser_id())
             ca = null;
 
         try {
@@ -77,7 +53,7 @@ public class SavingAccountService {
         } catch (Exception e) {
             return "Account creation failed";
         }
-    }*/
+    }
 
     /**
      * Deactivate existing account

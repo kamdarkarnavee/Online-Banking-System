@@ -1,6 +1,5 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.saving_account;
 
-import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,9 @@ public class SavingAccountController {
         return savingAccountService.getAccountByNo(account_no);
     }
 
-    /*@PostMapping(value = "saving/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "saving/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addAccount(@RequestBody SavingAccount account) {
         return savingAccountService.addAccount(account);
-    }*/
-
-    @RequestMapping(value = "/{user_id}/saving/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public SavingAccount addAccount(@PathVariable(value = "user_id") int user_id, @RequestBody SavingAccount account) {
-        return savingAccountService.addAccount(user_id, account);
     }
 
     @PutMapping(value = "saving/", consumes = MediaType.APPLICATION_JSON_VALUE)
