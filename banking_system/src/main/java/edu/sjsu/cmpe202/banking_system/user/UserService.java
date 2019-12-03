@@ -57,9 +57,23 @@ public class UserService {
      * @param user user
      * @return
      */
-   /* public Boolean updateUser(User user) {
+    public Boolean updateUser(User user, Integer id) 
+    {	
+  
+    		User u = userRepository.findById(id).get(); 
+    		u.setPhoneNumber(user.getPhoneNumber());
+    		u.setEmail(user.getEmail());
+    		u.setPassword(user.getPassword());
+    		u.setAddress(user.getAddress());
+    		u.setCity(user.getCity());
+    		u.setState(user.getState());
+    		userRepository.save(u);
+    		if(userRepository.findById(id).isPresent())
+    			return true;
+    		else
+    			return false;
 
-    }*/
+    }
 
     /**
      * delete a user

@@ -41,10 +41,13 @@ public class UserController {
         }
     }
 
-   /* @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-
-    }*/
+   @PutMapping("/update/{id}")
+    public Boolean updateUser(@RequestBody User user, @PathVariable Integer id) 
+   {
+	   Boolean result;
+	   result = userService.updateUser(user, id);
+	   return result;
+    }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id) {
