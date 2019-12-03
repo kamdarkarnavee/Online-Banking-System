@@ -31,9 +31,16 @@ public class SavingAccountController {
         return savingAccountService.addAccount(account);
     }*/
 
-    @RequestMapping(value = "/{user_id}/saving/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{user_id}/saving/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public SavingAccount addAccount(@PathVariable(value = "user_id") int user_id, @RequestBody SavingAccount account) {
         return savingAccountService.addAccount(user_id, account);
+    }
+
+    /**Get User Account Balance**/
+    @GetMapping(value = "/{user_id}/saving/balance")
+    public double getAccountBalance(@PathVariable(value = "user_id") int user_id) {
+        SavingAccount account = savingAccountService.getAccountByUserId(user_id);
+        return account.getBalance();
     }
 
     @PutMapping(value = "saving/", consumes = MediaType.APPLICATION_JSON_VALUE)

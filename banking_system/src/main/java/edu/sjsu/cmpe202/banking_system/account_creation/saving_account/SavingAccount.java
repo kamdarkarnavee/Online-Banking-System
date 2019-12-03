@@ -5,6 +5,7 @@ import edu.sjsu.cmpe202.banking_system.user.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import java.util.Date;
 
 @Entity
@@ -22,6 +23,7 @@ public class SavingAccount {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @DecimalMin("0.00")
     private double balance;
     private Date account_creation_date;
     private boolean account_status;

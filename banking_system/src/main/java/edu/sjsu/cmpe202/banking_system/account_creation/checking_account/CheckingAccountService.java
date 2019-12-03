@@ -45,6 +45,13 @@ public class CheckingAccountService {
     }
 
     /**
+     * Find Account by user id
+     */
+    public CheckingAccount getAccountByUserId(int user_id) {
+        return checkingAccountRepository.findByUserId(user_id);
+    }
+
+    /**
      * Add a new account
      */
     public CheckingAccount addAccount(int user_id, CheckingAccount account) {
