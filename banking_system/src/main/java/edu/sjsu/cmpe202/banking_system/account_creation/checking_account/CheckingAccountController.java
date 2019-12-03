@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -30,9 +31,16 @@ public class CheckingAccountController {
         return checkingAccountService.addAccount(account);
     }*/
 
-    @RequestMapping(value = "/{user_id}/checking/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{user_id}/checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CheckingAccount addAccount(@PathVariable(value = "user_id") int user_id, @RequestBody CheckingAccount account) {
         return checkingAccountService.addAccount(user_id, account);
+    }
+
+    /**Get User Account Balance**/
+    @GetMapping(value = "/{user_id}/checking/balance")
+    public double getAccountBalance(@PathVariable(value = "user_id") int user_id) {
+        CheckingAccount account = checkingAccountService.getAccountByUserId(user_id);
+        return account.getBalance();
     }
 
     @PutMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)

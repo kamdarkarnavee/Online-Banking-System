@@ -45,6 +45,13 @@ public class SavingAccountService {
     }
 
     /**
+     * Find Account by user id
+     */
+    public SavingAccount getAccountByUserId(int user_id) {
+        return savingAccountRepository.findByUserId(user_id);
+    }
+
+    /**
      * Add a new account
      */
     public SavingAccount addAccount(int user_id, SavingAccount account) {
