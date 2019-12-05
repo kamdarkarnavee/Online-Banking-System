@@ -1,6 +1,5 @@
 package edu.sjsu.cmpe202.banking_system.bill_payment;
 
-import edu.sjsu.cmpe202.banking_system.transactions.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

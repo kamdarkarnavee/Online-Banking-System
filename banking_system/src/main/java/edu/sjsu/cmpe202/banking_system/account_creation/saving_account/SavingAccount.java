@@ -15,8 +15,8 @@ public class SavingAccount {
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int saving_account_no;
-    //private int user_id;
+    private long saving_account_no;
+    //private long user_id;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
@@ -28,19 +28,19 @@ public class SavingAccount {
     private Date account_creation_date;
     private boolean account_status;
 
-    public int getSaving_account_no() {
+    public long getSaving_account_no() {
         return saving_account_no;
     }
 
-    public void setSaving_account_no(int saving_account_no) {
+    public void setSaving_account_no(long saving_account_no) {
         this.saving_account_no = saving_account_no;
     }
 
-    //public int getUser_id() {
+    //public long getUser_id() {
     //    return user_id;
     //}
 
-    //public void setUser_id(int user_id) {
+    //public void setUser_id(long user_id) {
     //    this.user_id = user_id;
     //}
 

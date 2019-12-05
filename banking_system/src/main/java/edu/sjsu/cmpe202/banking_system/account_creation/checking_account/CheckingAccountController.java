@@ -22,7 +22,7 @@ public class CheckingAccountController {
 
 
     @GetMapping(value = "checking/{account_no}")
-    public Optional<CheckingAccount> getAccountByNo(@PathVariable int account_no) {
+    public Optional<CheckingAccount> getAccountByNo(@PathVariable long account_no) {
         return checkingAccountService.getAccountByNo(account_no);
     }
 
@@ -49,7 +49,7 @@ public class CheckingAccountController {
     }
 
     @DeleteMapping(value = "checking/{account_no}")
-    public String deleteAccount(@PathVariable int account_no) {
+    public String deleteAccount(@PathVariable long account_no) {
         return checkingAccountService.deleteAccountById(account_no);
     }
 }

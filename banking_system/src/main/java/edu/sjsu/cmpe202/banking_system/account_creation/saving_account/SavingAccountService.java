@@ -40,7 +40,7 @@ public class SavingAccountService {
     /**
      * Find Account by account number
      */
-    public Optional<SavingAccount> getAccountByNo(int account_no) {
+    public Optional<SavingAccount> getAccountByNo(long account_no) {
         return savingAccountRepository.findById(account_no);
     }
 
@@ -89,7 +89,7 @@ public class SavingAccountService {
     /**
      * Deactivate existing account
      */
-    public String deleteAccountById(int account_no) {
+    public String deleteAccountById(long account_no) {
         SavingAccount ca = savingAccountRepository.findById(account_no).orElse(null);
         if (ca != null) {
             ca.setAccount_status(false);
