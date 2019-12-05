@@ -1,9 +1,12 @@
 package edu.sjsu.cmpe202.banking_system.payee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.user.User;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="payees")
+@Table(name="payees",uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","account_number_payee"})})
 public class Payee {
 
     @Id
@@ -11,7 +14,11 @@ public class Payee {
     private int id;
     private String first_name;
     private String last_name;
-    private int user_id;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     private long account_number_payee;
     private long routing_number;
     private boolean is_approved;
@@ -56,12 +63,12 @@ public class Payee {
         this.last_name = last_name;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public double getAccount_number_payee() {
