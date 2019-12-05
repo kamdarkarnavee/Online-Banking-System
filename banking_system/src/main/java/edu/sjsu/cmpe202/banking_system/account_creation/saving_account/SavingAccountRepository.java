@@ -5,4 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SavingAccountRepository extends JpaRepository<SavingAccount, Integer> {
      SavingAccount findByUserId (int user_id);
+
+	//boolean isSavingAccount(int from_account);
+
+	//SavingAccount withdraw(int account_no, double transaction_amount);
+	//SavingAccount deposit(int account_no, double transaction_amount);
+
 }

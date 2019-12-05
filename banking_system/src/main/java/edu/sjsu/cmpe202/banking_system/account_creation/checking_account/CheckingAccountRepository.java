@@ -4,4 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CheckingAccountRepository extends JpaRepository<CheckingAccount, Integer> {
      CheckingAccount findByUserId (int user_id);
+
+	//void withdraw(int from_account, double transaction_amount);
+	//void deposit(int account_no, double transaction_amount);
+
 }

@@ -1,5 +1,6 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.checking_account;
 
+import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccount;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import edu.sjsu.cmpe202.banking_system.user.UserRepository;
 import edu.sjsu.cmpe202.banking_system.user.UserService;
@@ -115,4 +116,22 @@ public class CheckingAccountService {
             return "Account update failed";
 
     }
+    
+    /*public void withdraw(int account_no, double transaction_amount)
+	{
+		double balance;
+		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
+		balance = account_to_be_updated.getBalance() - transaction_amount;
+		account_to_be_updated.setBalance(balance);
+		checkingAccountRepository.save(account_to_be_updated);
+	}
+	
+	public void deposit(int account_no, double transaction_amount)
+	{
+		double balance;
+		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
+		balance = account_to_be_updated.getBalance() + transaction_amount;
+		account_to_be_updated.setBalance(balance);
+		checkingAccountRepository.save(account_to_be_updated);
+	}*/
 }
