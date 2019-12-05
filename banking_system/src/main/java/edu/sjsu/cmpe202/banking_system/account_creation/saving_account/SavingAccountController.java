@@ -22,7 +22,7 @@ public class SavingAccountController {
 
 
     @GetMapping(value = "saving/{account_no}")
-    public Optional<SavingAccount> getAccountByNo(@PathVariable int account_no) {
+    public Optional<SavingAccount> getAccountByNo(@PathVariable long account_no) {
         return savingAccountService.getAccountByNo(account_no);
     }
 
@@ -49,7 +49,7 @@ public class SavingAccountController {
     }
 
     @DeleteMapping(value = "saving/{account_no}")
-    public String deleteAccount(@PathVariable int account_no) {
+    public String deleteAccount(@PathVariable long account_no) {
         return savingAccountService.deleteAccountById(account_no);
     }
 }

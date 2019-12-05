@@ -27,7 +27,7 @@ public class CheckingAccountService {
     public Collection<CheckingAccount> getAllAccounts() {
         Collection<CheckingAccount> accounts = new ArrayList<>();
         for (CheckingAccount account : checkingAccountRepository.findAll()) {
-            if (account.getAccount_status())
+            if (account.getActive_status())
                 accounts.add(account);
         }
 
@@ -40,7 +40,7 @@ public class CheckingAccountService {
     /**
      * Find Account by account number
      */
-    public Optional<CheckingAccount> getAccountByNo(int account_no) {
+    public Optional<CheckingAccount> getAccountByNo(long account_no) {
         return checkingAccountRepository.findById(account_no);
     }
 
@@ -90,10 +90,10 @@ public class CheckingAccountService {
     /**
      * Deactivate existing account
      */
-    public String deleteAccountById(int account_no) {
+    public String deleteAccountById(long account_no) {
         CheckingAccount ca = checkingAccountRepository.findById(account_no).orElse(null);
         if (ca != null) {
-            ca.setAccount_status(false);
+            ca.setActive_status(false);
             checkingAccountRepository.save(ca);
             return "Account deleted";
         } else
@@ -108,7 +108,7 @@ public class CheckingAccountService {
         CheckingAccount ca = checkingAccountRepository.findById(account.getChecking_account_no()).orElse(null);
         if (ca != null) {
             ca.setBalance(account.getBalance());
-            ca.setAccount_status(account.getAccount_status());
+            ca.setActive_status(account.getActive_status());
             checkingAccountRepository.save(ca);
             return "Account updated";
         } else

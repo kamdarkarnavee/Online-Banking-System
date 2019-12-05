@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -18,7 +15,7 @@ import java.util.Date;
 public class CheckingAccount {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int checking_account_no;
+    private long checking_account_no;
    // private int user_id;
 
     @JsonIgnore
@@ -30,23 +27,15 @@ public class CheckingAccount {
     private double balance;
 
     private Date account_creation_date;
-    private boolean account_status;
+    private boolean active_status;
 
-    public int getChecking_account_no() {
+    public long getChecking_account_no() {
         return checking_account_no;
     }
 
-    public void setChecking_account_no(int checking_account_no) {
+    public void setChecking_account_no(long checking_account_no) {
         this.checking_account_no = checking_account_no;
     }
-
-    //public int getUser_id() {
-    //    return user_id;
-    //}
-
-    //public void setUser_id(int user_id) {
-    //    this.user_id = user_id;
-    //}
 
     public User getUser() {
         return user;
@@ -72,11 +61,11 @@ public class CheckingAccount {
         this.account_creation_date = account_creation_date;
     }
 
-    public boolean getAccount_status() {
-        return account_status;
+    public boolean getActive_status() {
+        return active_status;
     }
 
-    public void setAccount_status(boolean account_status) {
-        this.account_status = account_status;
+    public void setActive_status(boolean active_status) {
+        this.active_status = active_status;
     }
 }
