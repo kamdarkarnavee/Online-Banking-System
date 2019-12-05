@@ -27,7 +27,7 @@ public class SavingAccountService {
     public Collection<SavingAccount> getAllAccounts() {
         Collection<SavingAccount> accounts = new ArrayList<>();
         for (SavingAccount account : savingAccountRepository.findAll()) {
-            if (account.getAccount_status())
+            if (account.getActive_status())
                 accounts.add(account);
         }
 
@@ -92,7 +92,7 @@ public class SavingAccountService {
     public String deleteAccountById(long account_no) {
         SavingAccount ca = savingAccountRepository.findById(account_no).orElse(null);
         if (ca != null) {
-            ca.setAccount_status(false);
+            ca.setActive_status(false);
             savingAccountRepository.save(ca);
             return "Account Deleted";
         } else
@@ -107,7 +107,7 @@ public class SavingAccountService {
         SavingAccount ca = savingAccountRepository.findById(account.getSaving_account_no()).orElse(null);
         if (ca != null) {
             ca.setBalance(account.getBalance());
-            ca.setAccount_status(account.getAccount_status());
+            ca.setActive_status(account.getActive_status());
             savingAccountRepository.save(ca);
             return "Account updated";
         } else
