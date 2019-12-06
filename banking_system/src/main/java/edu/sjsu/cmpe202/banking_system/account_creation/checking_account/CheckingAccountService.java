@@ -28,8 +28,7 @@ public class CheckingAccountService {
     public Collection<CheckingAccount> getAllAccounts() {
         Collection<CheckingAccount> accounts = new ArrayList<>();
         for (CheckingAccount account : checkingAccountRepository.findAll()) {
-            if (account.getActive_status())
-                accounts.add(account);
+            accounts.add(account);
         }
 
 //        Displays all the activated and deactivated accounts
@@ -71,22 +70,6 @@ public class CheckingAccountService {
         return newAccount;
 
     }
-    /*
-    public String addAccount(CheckingAccount account) {
-        CheckingAccount ca = checkingAccountRepository.findById(account.getChecking_account_no()).orElse(null);
-        if (ca != null && ca.getUser().getId() == account.getUser().getId())
-            ca = null;
-
-        try {
-            if (ca == null) {
-                checkingAccountRepository.save(account);
-                return "Account created successfully";
-            } else
-                return "Account creation failed";
-        } catch (Exception e) {
-            return "Account creation failed";
-        }
-    }*/
 
     /**
      * Deactivate existing account
@@ -94,28 +77,13 @@ public class CheckingAccountService {
     public String deleteAccountById(long account_no) {
         CheckingAccount ca = checkingAccountRepository.findById(account_no).orElse(null);
         if (ca != null) {
-            ca.setActive_status(false);
-            checkingAccountRepository.save(ca);
+//            accountRepository.deleteById(account_no);
             return "Account deleted";
         } else
             return "Account deletion failed";
-//            accountRepository.deleteById(account_no);
-    }
-
-    /**
-     * Update balance and account status of the existing account (doesn't update account number, user id or account creation date)
-     */
-    public String updateAccount(CheckingAccount account) {
-        CheckingAccount ca = checkingAccountRepository.findById(account.getChecking_account_no()).orElse(null);
-        if (ca != null) {
-            ca.setBalance(account.getBalance());
-            ca.setActive_status(account.getActive_status());
-            checkingAccountRepository.save(ca);
-            return "Account updated";
-        } else
-            return "Account update failed";
 
     }
+    
     
     /*public void withdraw(int account_no, double transaction_amount)
 	{
