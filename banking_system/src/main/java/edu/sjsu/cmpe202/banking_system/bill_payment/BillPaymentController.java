@@ -13,10 +13,11 @@ public class BillPaymentController {
     @Autowired
     private BillPaymentService billpaymentService;
 
-    @PostMapping("/add")
-    public void addtransactions(@RequestBody BillPayment billpayment)
+    @PostMapping("/{user_id}/{from_account}/{payee_id}/add")
+    public void addtransactions(@PathVariable(value = "user_id") int user_id,@PathVariable(value = "from_account") long from_account,
+                                @PathVariable(value = "payee_id") int payee_id,@RequestBody BillPayment billpayment)
     {
-        billpaymentService.addBillPayment(billpayment);
+        billpaymentService.addBillPayment(user_id,from_account,payee_id,billpayment);
     }
 
     @GetMapping("/pending_transactions")

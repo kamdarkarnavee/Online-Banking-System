@@ -13,8 +13,7 @@ public class Payee {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
-    private String first_name;
-    private String last_name;
+    private String name;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,15 +35,6 @@ public class Payee {
 
     }
 
-    public Payee(String first_name, String last_name, long account_number_payee, long routing_number
-            , String payee_description,String bank_name) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.account_number_payee = account_number_payee;
-        this.routing_number = routing_number;
-        this.payee_description = payee_description;
-        this.bank_name = bank_name;
-    }
 
     public int getId() {
         return id;
@@ -54,20 +44,12 @@ public class Payee {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public User getUser() {
@@ -78,7 +60,7 @@ public class Payee {
         this.user = user;
     }
 
-    public double getAccount_number_payee() {
+    public long getAccount_number_payee() {
         return account_number_payee;
     }
 

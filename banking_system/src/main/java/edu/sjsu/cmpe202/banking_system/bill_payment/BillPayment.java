@@ -2,11 +2,14 @@ package edu.sjsu.cmpe202.banking_system.bill_payment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.sjsu.cmpe202.banking_system.payee.Payee;
+import edu.sjsu.cmpe202.banking_system.transactions.Transactions;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -27,14 +30,9 @@ public class BillPayment {
     @JoinColumn(name = "payee_id")
     private Payee payee;
 
-    private Date date = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
-    private String transaction_date = formatter.format(date);
-
+    private String transaction_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     private long from_account;
-
     private long to_account;
 
     @DecimalMin("1.00")
@@ -46,6 +44,28 @@ public class BillPayment {
     private String transaction_details;
 
     private String transaction_description;
+
+    enum Period{
+        WEEKLY,
+        MONTHLY
+    }
+    private Period period;
+
+    enum DayOfWeek{
+        SUNDAY,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY
+    }
+
+    private DayOfWeek dayOfWeek;
+
+    private int dateOfMonth;
+
+    private String final_date  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     enum Status{
         PENDING,
@@ -62,6 +82,31 @@ public class BillPayment {
         this.user = user_id;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Payee getPayee() {
+        return payee;
+    }
+
+    public void setPayee(Payee payee) {
+        this.payee = payee;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getTransaction_date() {
         return transaction_date;
     }
@@ -69,7 +114,6 @@ public class BillPayment {
     public void setTransaction_date(String transaction_date) {
         this.transaction_date = transaction_date;
     }
-
 
     public long getFrom_account() {
         return from_account;
@@ -119,14 +163,45 @@ public class BillPayment {
         this.transaction_description = transaction_description;
     }
 
-    public int getId() {
-        return id;
+    public Period getPeriod() {
+        return period;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public int getDateOfMonth() {
+        return dateOfMonth;
+    }
+
+    public void setDateOfMonth(int dateOfMonth) {
+        this.dateOfMonth = dateOfMonth;
+    }
+
+    public Date getFinal_date() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        try {
+            cal.setTime(sdf.parse(final_date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+        }
+        return cal.getTime();
+    }
+
+    public void setFinal_date(String final_date) {
+        this.final_date = final_date;
+    }
 
     public Status getStatus() {
         return status;

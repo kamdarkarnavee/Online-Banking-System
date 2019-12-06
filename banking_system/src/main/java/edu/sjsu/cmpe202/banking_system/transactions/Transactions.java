@@ -1,12 +1,14 @@
 package edu.sjsu.cmpe202.banking_system.transactions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.bill_payment.BillPayment;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "transactions")
@@ -16,7 +18,7 @@ public class Transactions {
     private int transaction_id;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user_id;
 
@@ -29,7 +31,7 @@ public class Transactions {
     @DecimalMin("1.00")
     private double transaction_amount;
 
-    @DecimalMin("0.00")
+   @DecimalMin("0.00")
     private double balance;
 
     private String transaction_details;

@@ -28,9 +28,6 @@ public class PayeeService {
         return payees;
     }
 
-   // public void addPayee(Payee payee){
-        //payeeRepository.save(payee);
-    //}
     /**
      * Add a new payee
      */
@@ -52,5 +49,14 @@ public class PayeeService {
 
     public void deletePayee(Integer id) {
         payeeRepository.deleteById(id);
+    }
+
+    public Payee getPayeeById(Integer id) {
+        if (payeeRepository.findById(id).isPresent()) {
+            return payeeRepository.findById(id).get();
+        }
+        else {
+            return null;
+        }
     }
 }
