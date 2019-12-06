@@ -29,4 +29,10 @@ public class CheckingAccountCustomImplementation implements CheckingAccountCusto
 		account_to_be_updated.setBalance(balance);
 		checkingAccountRepository.save(account_to_be_updated);
 	}
+	
+	public double get_account_balance(long from_account)
+	{
+		return (checkingAccountRepository.findById(from_account).get()).getBalance();
+	}
+
 }

@@ -29,4 +29,10 @@ public class SavingAccountCustomImplementation implements SavingAccountCustomInt
 		account_to_be_updated.setBalance(balance);
 		savingAccountRepository.save(account_to_be_updated);
 	}
+	
+	public double get_account_balance(long from_account)
+	{
+		return (savingAccountRepository.findById(from_account).get()).getBalance();
+	}
+
 }
