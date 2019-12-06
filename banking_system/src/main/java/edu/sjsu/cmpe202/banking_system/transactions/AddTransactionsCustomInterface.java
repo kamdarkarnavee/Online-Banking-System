@@ -11,5 +11,9 @@ public interface AddTransactionsCustomInterface
 		//public void withdraw(int account_no, double transaction_amount);
 		public void performtransactions(Transactions transaction);
 
+		public void manual_refunds_admin(Transactions transaction);
+
+		public void manual_credits_admin(Transactions transaction);
+
 
 }

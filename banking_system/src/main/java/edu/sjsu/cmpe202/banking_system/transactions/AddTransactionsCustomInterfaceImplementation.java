@@ -127,46 +127,82 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 	/*
 	 * Perform Manual Refunds by admin
 	 */
-	/*public void manual_refunds_admin(Transactions transaction)
+	public void manual_refunds_admin(Transactions transaction)
 	{
 		
 		long from_account, to_account;
 		double transaction_amount;
+		String account_type;
+
 		transaction_amount = transaction.getTransaction_amount();
 		boolean flag;
 		from_account = transaction.getFrom_account();
 		to_account = transaction.getTo_account();
+		if(from_account == 1111111111)
+		{
+			System.out.println("Performing Manual Refunds");
+			flag = savingaccountrepository.existsById(to_account);
+			if(flag == true)
+			{
+				account_type = "SAVING";
+				balance = get_transaction_balance(account_type, to_account);
+				update_transaction_balance(balance, transaction);
+				savingaccountcustominterface.deposit(to_account, transaction_amount);
+				
+			}
+			else if(checkingaccountrepository.existsById(to_account))
+			{
+				account_type = "CHECKING";
+				balance = get_transaction_balance(account_type, to_account);
+				update_transaction_balance(balance, transaction);
+				checkingaccountcustominterface.deposit(to_account, transaction_amount);
+			}
+			else
+				System.out.println("to_account does not exist in our database, please try again");	
+		}
+		
+		
+	}
+	
+	/*
+	 * Perform Manual Credits after verification of cash amount by admin
+	 */
+	public void manual_credits_admin(Transactions transaction)
+	{
+		
+		long from_account, to_account;
+		double transaction_amount;
+		String account_type;
 
-		flag = savingaccountrepository.existsById(from_account);
-		
-		
-		if(flag == true)
+		transaction_amount = transaction.getTransaction_amount();
+		boolean flag;
+		from_account = transaction.getFrom_account();
+		to_account = transaction.getTo_account();
+		if(from_account == 1111111112)
 		{
-			savingaccountcustominterface.withdraw(from_account, transaction_amount);
-			
+			System.out.println("Performing Manual Credit");
+			flag = savingaccountrepository.existsById(to_account);
+			if(flag == true)
+			{
+				account_type = "SAVING";
+				balance = get_transaction_balance(account_type, to_account);
+				update_transaction_balance(balance, transaction);
+				savingaccountcustominterface.deposit(to_account, transaction_amount);
+				
+			}
+			else if(checkingaccountrepository.existsById(to_account))
+			{
+				account_type = "CHECKING";
+				balance = get_transaction_balance(account_type, to_account);
+				update_transaction_balance(balance, transaction);
+				checkingaccountcustominterface.deposit(to_account, transaction_amount);
+			}
+			else
+				System.out.println("Ask user for correct account information");	
 		}
-		else if(checkingaccountrepository.existsById(from_account))
-		{
-				checkingaccountcustominterface.withdraw(from_account, transaction_amount);
-		}
-		else
-			System.out.println("from_account does not exist in our database, please try again");
 		
 		
-		flag = savingaccountrepository.existsById(to_account);
-		if(flag == true)
-		{
-			savingaccountcustominterface.deposit(to_account, transaction_amount);
-			
-		}
-		else if(checkingaccountrepository.existsById(to_account))
-		{
-			checkingaccountcustominterface.deposit(to_account, transaction_amount);
-		}
-		else
-			System.out.println("to_account does not exist in our database, please try again");
-		
-	} */
+	}
 	
 	
 	

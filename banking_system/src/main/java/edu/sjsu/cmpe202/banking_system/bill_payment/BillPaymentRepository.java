@@ -22,7 +22,7 @@ public List<BillPayment> findByDate(@Param("date") String date) ;
     public int modifyingQueryInsertTransaction(@Param("transaction_date") String transaction_date, @Param("from_account")Long from_account,
                                                @Param("to_account")Long to_account, @Param("transaction_amount")double transaction_amount,
                                                @Param("balance")double balance, @Param("transaction_details")String transaction_details,
-                                               @Param("transaction_description")String transaction_description,@Param("user_id")int user_id);
+                                               @Param("transaction_description")String transaction_description);
 
 //    @Modifying
 //    @Query(value = "UPDATE billpayment SET transaction_date = :transaction_date     ":transaction_description)",nativeQuery = true)

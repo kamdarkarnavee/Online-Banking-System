@@ -27,6 +27,31 @@ public class AddTransactionsAdminController {
     	
     	addtransactionscustominterface.performtransactions(transaction); // to perform deposit or withdraw
     	
+
+    }
+    
+    @PostMapping("/manual_refunds")
+    public void manualrefunds(@RequestBody Transactions transaction)
+    {
+    	if(transaction.getFrom_account() == 1111111111)
+    	{
+    		addTransactionsAdminService.addtransactionsadmin(transaction); // to insert a transaction record in database
+    	
+    		addtransactionscustominterface.manual_refunds_admin(transaction); // to credit refund for a user
+    	}
+    	
+
+    }
+    
+    @PostMapping("/manual_credit")
+    public void manualcredit(@RequestBody Transactions transaction)
+    {
+    	if(transaction.getFrom_account() == 1111111112)
+    	{
+    		addTransactionsAdminService.addtransactionsadmin(transaction); // to insert a transaction record in database
+    	
+    		addtransactionscustominterface.manual_credits_admin(transaction); // to deposit money in user's account
+    	}
     	
 
     }

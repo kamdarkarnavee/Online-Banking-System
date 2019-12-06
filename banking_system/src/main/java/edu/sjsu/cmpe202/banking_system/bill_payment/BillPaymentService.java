@@ -88,7 +88,7 @@ public class BillPaymentService {
             Date today_date = new Date();
             billPaymentRepository.modifyingQueryInsertTransaction((formater.format(today_date)),billPayments.get(i).getFrom_account(),
                     billPayments.get(i).getTo_account(),billPayments.get(i).getTransaction_amount(),billPayments.get(i).getBalance(),
-                    billPayments.get(i).getTransaction_details(),billPayments.get(i).getTransaction_description(),billPayments.get(i).getUser_id().getId());
+                    billPayments.get(i).getTransaction_details(),billPayments.get(i).getTransaction_description());
 
             if(billPayments.get(i).getPeriod() != null){
                 if(billPayments.get(i).getPeriod() == BillPayment.Period.WEEKLY){
