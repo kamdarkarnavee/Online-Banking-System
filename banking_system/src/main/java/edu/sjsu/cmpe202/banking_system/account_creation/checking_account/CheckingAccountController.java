@@ -26,10 +26,6 @@ public class CheckingAccountController {
         return checkingAccountService.getAccountByNo(account_no);
     }
 
-    /*@PostMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addAccount(@RequestBody CheckingAccount account) {
-        return checkingAccountService.addAccount(account);
-    }*/
 
     @PostMapping(value = "/{user_id}/checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CheckingAccount addAccount(@PathVariable(value = "user_id") int user_id, @RequestBody CheckingAccount account) {
@@ -43,10 +39,6 @@ public class CheckingAccountController {
         return account.getBalance();
     }
 
-    @PutMapping(value = "checking/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String updateAccount(@RequestBody CheckingAccount account) {
-        return checkingAccountService.updateAccount(account);
-    }
 
     @DeleteMapping(value = "/{user_id}/checking")
     public void deleteAccount(@PathVariable(value = "user_id") int user_id) {

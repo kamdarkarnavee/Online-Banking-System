@@ -1,5 +1,6 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.checking_account;
 
+import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccount;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import edu.sjsu.cmpe202.banking_system.user.UserRepository;
 import edu.sjsu.cmpe202.banking_system.user.UserService;
@@ -28,8 +29,7 @@ public class CheckingAccountService {
     public Collection<CheckingAccount> getAllAccounts() {
         Collection<CheckingAccount> accounts = new ArrayList<>();
         for (CheckingAccount account : checkingAccountRepository.findAll()) {
-            if (account.getActive_status())
-                accounts.add(account);
+            accounts.add(account);
         }
 
 //        Displays all the activated and deactivated accounts
@@ -71,22 +71,6 @@ public class CheckingAccountService {
         return newAccount;
 
     }
-    /*
-    public String addAccount(CheckingAccount account) {
-        CheckingAccount ca = checkingAccountRepository.findById(account.getChecking_account_no()).orElse(null);
-        if (ca != null && ca.getUser().getId() == account.getUser().getId())
-            ca = null;
-
-        try {
-            if (ca == null) {
-                checkingAccountRepository.save(account);
-                return "Account created successfully";
-            } else
-                return "Account creation failed";
-        } catch (Exception e) {
-            return "Account creation failed";
-        }
-    }*/
 
     /**
      * Deactivate existing account
@@ -109,18 +93,22 @@ public class CheckingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a checking account");
     }
 
-    /**
-     * Update balance and account status of the existing account (doesn't update account number, user id or account creation date)
-     */
-    public String updateAccount(CheckingAccount account) {
-        CheckingAccount ca = checkingAccountRepository.findById(account.getChecking_account_no()).orElse(null);
-        if (ca != null) {
-            ca.setBalance(account.getBalance());
-            ca.setActive_status(account.getActive_status());
-            checkingAccountRepository.save(ca);
-            return "Account updated";
-        } else
-            return "Account update failed";
 
-    }
+    /*public void withdraw(int account_no, double transaction_amount)
+	{
+		double balance;
+		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
+		balance = account_to_be_updated.getBalance() - transaction_amount;
+		account_to_be_updated.setBalance(balance);
+		checkingAccountRepository.save(account_to_be_updated);
+	}
+
+	public void deposit(int account_no, double transaction_amount)
+	{
+		double balance;
+		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
+		balance = account_to_be_updated.getBalance() + transaction_amount;
+		account_to_be_updated.setBalance(balance);
+		checkingAccountRepository.save(account_to_be_updated);
+	}*/
 }

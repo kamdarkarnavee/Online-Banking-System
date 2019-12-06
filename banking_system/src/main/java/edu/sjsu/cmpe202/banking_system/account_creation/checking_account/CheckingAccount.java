@@ -27,7 +27,6 @@ public class CheckingAccount {
     private double balance;
 
     private Date account_creation_date;
-    private boolean active_status;
 
     public long getChecking_account_no() {
         return checking_account_no;
@@ -59,13 +58,5 @@ public class CheckingAccount {
 
     public void setAccount_creation_date(Date account_creation_date) {
         this.account_creation_date = account_creation_date;
-    }
-
-    public boolean getActive_status() {
-        return active_status;
-    }
-
-    public void setActive_status(boolean active_status) {
-        this.active_status = active_status;
     }
 }
