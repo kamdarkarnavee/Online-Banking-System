@@ -8,11 +8,15 @@ import javax.validation.Valid;
 
 import org.hibernate.JDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController    // Class is a Controller
 @RequestMapping("/users") // This means URL's start with /user (after Application path)
@@ -54,6 +58,15 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping(value = "/{id}/checking/transfer_remaining_balance", produces = "application/json")
+    public void transferCheckingAccountRemainingBalance(@PathVariable Integer id){
+        userService.transferRemainingBalanceinCheckingAccount(id);
+    }
+
+    @GetMapping("/{id}/saving/transfer_remaining_balance")
+    public void transferSavingAccountRemainingBalance(@PathVariable Integer id){
+        userService.transferRemainingBalanceinSavingAccount(id);
+    }
 
     /*** Handle Errors ***/
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -48,8 +48,8 @@ public class SavingAccountController {
         return savingAccountService.updateAccount(account);
     }
 
-    @DeleteMapping(value = "saving/{account_no}")
-    public String deleteAccount(@PathVariable long account_no) {
-        return savingAccountService.deleteAccountById(account_no);
+    @DeleteMapping(value = "/{user_id}/saving")
+    public void deleteAccount(@PathVariable(value = "user_id") int user_id) {
+        savingAccountService.deleteAccountById(user_id);
     }
 }

@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 @Service
 public class CheckingAccountService {
@@ -90,15 +91,22 @@ public class CheckingAccountService {
     /**
      * Deactivate existing account
      */
-    public String deleteAccountById(long account_no) {
-        CheckingAccount ca = checkingAccountRepository.findById(account_no).orElse(null);
-        if (ca != null) {
-            ca.setActive_status(false);
-            checkingAccountRepository.save(ca);
-            return "Account deleted";
-        } else
-            return "Account deletion failed";
-//            accountRepository.deleteById(account_no);
+    public void deleteAccountById(int user_id) {
+        Optional<User> user = userRepository.findById(user_id);
+        if (!user.isPresent()) {
+            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
+        }
+        if(user.get().getCheckingAccount()!= null) {
+            //untie User to CheckingAccount
+            user.get().getCheckingAccount().setUser(null);
+
+            //untie CheckingAccount to User
+            user.get().setCheckingAccount(null);
+            userRepository.save(user.get());
+            throw  new ResponseStatusException(OK, "Successfully deleted checking account");
+        }
+        else
+            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a checking account");
     }
 
     /**

@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe202.banking_system.payee;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.bill_payment.BillPayment;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
@@ -16,9 +17,15 @@ public class Payee {
     private String last_name;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(mappedBy = "payee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private BillPayment billPayment;
+
     private long account_number_payee;
     private long routing_number;
     private boolean is_approved;

@@ -1,10 +1,17 @@
 package edu.sjsu.cmpe202.banking_system.user;
 
+import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.*;
 
 @Service
 public class UserService {
@@ -55,11 +62,10 @@ public class UserService {
     /**
      * update a user
      * @param user user
-     * @return
+     * @return boolean
      */
     public Boolean updateUser(User user, Integer id) 
-    {	
-  
+    {
     		User u = userRepository.findById(id).get(); 
     		u.setPhoneNumber(user.getPhoneNumber());
     		u.setEmail(user.getEmail());
@@ -72,7 +78,6 @@ public class UserService {
     			return true;
     		else
     			return false;
-
     }
 
     /**
@@ -82,6 +87,54 @@ public class UserService {
     public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
+
+    /**
+     * Transfer Remaining Balance in Checking Account
+     */
+    public void transferRemainingBalanceinCheckingAccount(int user_id) {
+        Optional<User> user = userRepository.findById(user_id);
+        double balance = 0;
+        if (!user.isPresent()) {
+            throw new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
+        }
+        if (user.get().getAdmin()) {
+            if (user.get().getCheckingAccount() != null) {
+                balance = user.get().getCheckingAccount().getBalance();
+                user.get().getCheckingAccount().setBalance(0.00);
+                userRepository.save(user.get());
+                throw new ResponseStatusException(OK, "Account remaining balance of $" + balance + " will be sent to your home in a check.");
+            } else {
+                throw new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a checking account");
+            }
+        } else {
+            throw new ResponseStatusException(BAD_REQUEST, "You don't have admin privileges.");
+        }
+    }
+
+
+    /**
+     * Transfer Remaining Balance in Saving Account
+     */
+    public void transferRemainingBalanceinSavingAccount(int user_id) {
+        Optional<User> user = userRepository.findById(user_id);
+        double balance = 0;
+        if (!user.isPresent()) {
+            throw new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
+        }
+        if (user.get().getAdmin()) {
+            if (user.get().getSavingAccount() != null) {
+                balance = user.get().getSavingAccount().getBalance();
+                user.get().getSavingAccount().setBalance(0.00);
+                userRepository.save(user.get());
+                throw new ResponseStatusException(OK, "Account remaining balance of $" + balance + " will be sent to your home in a check.");
+            } else {
+                throw new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a saving account");
+            }
+        } else {
+            throw new ResponseStatusException(BAD_REQUEST, "You don't have admin privileges.");
+        }
+    }
+
 
 }
 
