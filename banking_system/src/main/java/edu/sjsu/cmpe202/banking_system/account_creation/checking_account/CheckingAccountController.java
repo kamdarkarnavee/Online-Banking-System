@@ -40,8 +40,8 @@ public class CheckingAccountController {
     }
 
 
-    @DeleteMapping(value = "checking/{account_no}")
-    public String deleteAccount(@PathVariable long account_no) {
-        return checkingAccountService.deleteAccountById(account_no);
+    @DeleteMapping(value = "/{user_id}/checking")
+    public void deleteAccount(@PathVariable(value = "user_id") int user_id) {
+        checkingAccountService.deleteAccountById(user_id);
     }
 }

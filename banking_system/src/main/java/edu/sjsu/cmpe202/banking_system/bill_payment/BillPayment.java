@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe202.banking_system.bill_payment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.payee.Payee;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
@@ -17,9 +18,14 @@ public class BillPayment {
     private int id;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payee_id")
+    private Payee payee;
 
     private Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -49,11 +55,11 @@ public class BillPayment {
     private Status status;
 
     public User getUser_id() {
-        return user_id;
+        return user;
     }
 
     public void setUser_id(User user_id) {
-        this.user_id = user_id;
+        this.user = user_id;
     }
 
     public String getTransaction_date() {

@@ -6,13 +6,18 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import edu.sjsu.cmpe202.banking_system.bill_payment.BillPayment;
 import edu.sjsu.cmpe202.banking_system.constraint.ValidDate;
 import edu.sjsu.cmpe202.banking_system.constraint.ValidPassword;
 import edu.sjsu.cmpe202.banking_system.constraint.ValidPhoneNumber;
 
 import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccount;
+import edu.sjsu.cmpe202.banking_system.payee.Payee;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.*;
+
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "users")
@@ -61,7 +66,7 @@ public class User {
 
     @Column(columnDefinition="tinyint(1) default 1")
     @NotNull
-    private boolean isAdmin;
+    private boolean admin;
 
     @OneToOne(mappedBy = "user",
             cascade = CascadeType.ALL,
@@ -72,6 +77,16 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private SavingAccount savingAccount;
+
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Payee> payee;
+
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<BillPayment> billpayment;
 
 
     public Integer getId() {
@@ -163,11 +178,11 @@ public class User {
     }
 
     public boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     public CheckingAccount getCheckingAccount() {
@@ -186,5 +201,20 @@ public class User {
         this.savingAccount = savingAccount;
     }
 
+    public Set<Payee> getPayee() {
+        return payee;
+    }
+
+    public void setPayee(Payee payee) {
+        this.payee.add(payee);
+    }
+
+    public Set<BillPayment> getBillpayment() {
+        return billpayment;
+    }
+
+    public void setBillpayment(BillPayment billpayment) {
+        this.billpayment.add(billpayment);
+    }
 
 }

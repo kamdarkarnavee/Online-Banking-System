@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 @Service
 public class SavingAccountService {
@@ -71,14 +72,25 @@ public class SavingAccountService {
     }
 
 
-    public String deleteAccountById(long account_no) {
-        SavingAccount ca = savingAccountRepository.findById(account_no).orElse(null);
-        if (ca != null) {
-            savingAccountRepository.deleteById(account_no);
-            return "Account Deleted";
-        } else
-            return "Account deletion failed";
+    /**
+     * Deactivate existing account
+     */
+    public void deleteAccountById(int user_id) {
+        Optional<User> user = userRepository.findById(user_id);
+        if (!user.isPresent()) {
+            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
+        }
+        if(user.get().getSavingAccount()!= null) {
+            //untie User to CheckingAccount
+            user.get().getSavingAccount().setUser(null);
 
+            //untie CheckingAccount to User
+            user.get().setSavingAccount(null);
+            userRepository.save(user.get());
+            throw  new ResponseStatusException(OK, "Successfully deleted saving account");
+        }
+        else
+            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a saving account");
     }
-        
+
 }
