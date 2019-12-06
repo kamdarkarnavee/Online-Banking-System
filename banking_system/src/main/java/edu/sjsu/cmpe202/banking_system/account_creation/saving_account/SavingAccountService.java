@@ -93,6 +93,4 @@ public class SavingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a saving account");
     }
 
-    }
-
 }
