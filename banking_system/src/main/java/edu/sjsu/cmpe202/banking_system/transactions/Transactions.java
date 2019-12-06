@@ -22,9 +22,9 @@ public class Transactions {
 
     private Date transaction_date;
 
-    private int from_account;
+    private long from_account;
 
-    private int to_account;
+    private long to_account;
 
     @DecimalMin("1.00")
     private double transaction_amount;
@@ -61,19 +61,19 @@ public class Transactions {
         this.transaction_date = transaction_date;
     }
 
-    public int getFrom_account() {
+    public long getFrom_account() {
         return from_account;
     }
 
-    public void setFrom_account(int from_account) {
+    public void setFrom_account(long from_account) {
         this.from_account = from_account;
     }
 
-    public int getTo_account() {
+    public long getTo_account() {
         return to_account;
     }
 
-    public void setTo_account(int to_account) {
+    public void setTo_account(long to_account) {
         this.to_account = to_account;
     }
 

@@ -1,11 +1,16 @@
-package edu.sjsu.cmpe202.banking_system.add_transactions;
+package edu.sjsu.cmpe202.banking_system.transactions;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccountCustomInterface;
 import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccountRepository;
+import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccountRepository;
+import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccountCustomInterface;
+
 import edu.sjsu.cmpe202.banking_system.transactions.Transactions;
 
+@Service
 public class AddTransactionsCustomInterfaceImplementation implements AddTransactionsCustomInterface {
 
 	@Autowired
@@ -14,9 +19,16 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 	@Autowired
 	SavingAccountCustomInterface savingaccountcustominterface;
 	
+	@Autowired
+	CheckingAccountRepository checkingaccountrepository;
+	
+	@Autowired
+	CheckingAccountCustomInterface checkingaccountcustominterface;
+	
+	
 	public void performtransactions(Transactions transaction)
 	{
-		int from_account, to_account;
+		long from_account, to_account;
 		double transaction_amount;
 		transaction_amount = transaction.getTransaction_amount();
 		boolean flag;
@@ -33,8 +45,8 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 			savingaccountcustominterface.withdraw(from_account, transaction_amount);
 			
 		}
-		//else
-		//	checkingaccountrepository.withdraw(from_account, transaction_amount);
+		else
+			checkingaccountcustominterface.withdraw(from_account, transaction_amount);
 		
 		flag = savingaccountrepository.existsById(to_account);
 		if(flag == true)
@@ -43,8 +55,8 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 			savingaccountcustominterface.deposit(to_account, transaction_amount);
 			
 		}
-		//else
-		//	checkingaccountrepository.deposit(to_account, transaction_amount);
+		else
+			checkingaccountcustominterface.deposit(to_account, transaction_amount);
 		
 		
 	}
