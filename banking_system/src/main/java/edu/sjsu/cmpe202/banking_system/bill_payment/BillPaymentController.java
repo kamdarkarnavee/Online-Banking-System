@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,8 +15,8 @@ public class BillPaymentController {
     private BillPaymentService billpaymentService;
 
     @PostMapping("/{user_id}/{from_account}/{payee_id}/add")
-    public void addtransactions(@PathVariable(value = "user_id") int user_id,@PathVariable(value = "from_account") long from_account,
-                                @PathVariable(value = "payee_id") int payee_id,@RequestBody BillPayment billpayment)
+    public void addtransactions(@Valid @PathVariable(value = "user_id") int user_id, @PathVariable(value = "from_account") long from_account,
+                                @PathVariable(value = "payee_id") int payee_id, @RequestBody BillPayment billpayment)
     {
         billpaymentService.addBillPayment(user_id,from_account,payee_id,billpayment);
     }

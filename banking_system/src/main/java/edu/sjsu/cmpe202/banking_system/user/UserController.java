@@ -44,6 +44,7 @@ public class UserController {
             return ResponseEntity.ok(foundUser);
         }
     }
+   
 
    @PutMapping("/update/{id}")
     public Boolean updateUser(@RequestBody User user, @PathVariable Integer id) 
@@ -66,6 +67,22 @@ public class UserController {
     @GetMapping("/{id}/saving/transfer_remaining_balance")
     public void transferSavingAccountRemainingBalance(@PathVariable Integer id){
         userService.transferRemainingBalanceinSavingAccount(id);
+    }
+    
+    
+    @GetMapping("/admin/all")
+    public Iterable<User> getAllUsersForAdmin() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/admin/get_user/{id}")
+    public ResponseEntity<User> getUserForAdmin (@PathVariable Integer id) {
+        User foundUser = userService.getUserById(id);
+        if (foundUser == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(foundUser);
+        }
     }
 
     /*** Handle Errors ***/
