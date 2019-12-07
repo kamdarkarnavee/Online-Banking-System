@@ -25,4 +25,10 @@ public class BillPaymentController {
     public void findPendingTransactions(){
         billpaymentService.findPendingTransactions();
     }
+
+    @DeleteMapping("/{user_id}/{payee_id}/{id}/deletebill")
+    public void deletebill(@PathVariable(value = "user_id") int user_id,@PathVariable(value = "payee_id") int payee_id,
+                           @PathVariable(value = "id") int id){
+        billpaymentService.deletePayee(user_id,payee_id,id);
+    }
 }

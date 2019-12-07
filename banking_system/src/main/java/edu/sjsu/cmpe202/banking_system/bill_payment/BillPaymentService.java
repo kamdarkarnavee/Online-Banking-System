@@ -162,4 +162,10 @@ public class BillPaymentService {
         billPayment.setStatus(BillPayment.Status.COMPLETED);
         billPaymentRepository.save(billPayment);
     }
+
+    public void deletePayee(int user_id, int payee_id,int id) {
+        billPaymentRepository.deleteById(id);
+    }
+
+
 }
