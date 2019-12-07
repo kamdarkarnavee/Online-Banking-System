@@ -30,7 +30,11 @@
 ![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/addcredit.JPG)
 
 ## Design Decisions
-
+ - APIs created on Spring Boot Framework. 
+     - Programming Language: Java
+     - Input and Output: Json
+     - Added Validation and error handling
+ - Database used: MySQL
  - For transactions part, transfer between accounts, recurring transfer, recurring bill payment, manual refunds by the admin, adding credit would need either to deposit or withdraw money from saving or checking account to complete transaction
  - An interface called "AddTransactionCustomInterface" was created so that all the functionalities that perform transactions would be performing transactions using this interface.
  - Two more additional interfaces- "SavingAccountCustomInterface" and "CheckingAccountCustomInterface" were created to perform deposit and withdraw functions for transacting through the accounts.
@@ -44,8 +48,8 @@ October 26   | Understand Requirements              | Create Meeting Minute Docu
 November 2   | Create Meeting Minute Documents      | Set Up a MySQL database on an EC2    | None
 November 9   | Setting Up Database                  | Learn Spring Boot                    | None
 November 20  | Learn Spring Boot                    | Add, get, and delete user            | None
-November 23  |  Add, get, and delete user           | Check due balances, Check balance, close existing account | All tasks I am planning on work on next are blocked. 'Creating accounts' needs to be finished first.
-December 4   |                                      |                                      |
+November 23  |  Add, get, and delete user           | Check due balances, Check balance, close existing account. Finish meeting minutes docs. Create wireframes. Do extra credit. | All APIs I am planning on work on next are blocked. 'Creating accounts' needs to be finished first. I can't work on the extra credit until the APIs are done.
+December 4   | Check due balances, Check balance, close existing account. | Few days to work on the wireframes and extra credit | Extra credit can't get started until everything else that is required is finished.    
 
 ### Karnavee
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
@@ -78,17 +82,18 @@ November 23  |          Approve Payee               |    One time/Recurring bill
 December 4   | One time bills/recurring bills       | Validations,UI Wireframes/Burndown   | None
 
 ## XP Core Values
+
 ### Janette 
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
-October 26   |                | 
-November 2   |                | 
-November 9   |                | 
-November 20  |                | 
-November 23  |                |
-December 4   |                |
+October 26   | Communication  | First time we met and everyone encouraged communication by discussing what the project was about and what we needed to do next.  
+November 2   | Communication  | We discussed various programming languages and frameworks to use in this project. Everyone was participating and giving their own opinion.
+November 9   | Communication  | During this meeting we worked on the backlog and agreed on how many hours each task would take. Everyone participated.
+November 20  | Feedback       | We met today to check how everything was going with the project. We all gave our feedback about each others contributions so far and made changes according to it.
+November 23  | Simplicity     | We kept this meeting simple. We met online for a short time and divided tasks before the long break. 
+December 4   | Communication  | The team got together and discussed solutions for some problems in the code. We helped each other a lot by communicationg since we all came up with solutions.
 
-### Karnavee 
+### Karnavee
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
 October 26   |                | 
