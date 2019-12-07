@@ -41,7 +41,7 @@ public class User {
     @Size(min = 2, max = 50, message = "Username must be between 2 and 50 characters")
     private String username;
 
-    //@ValidPassword
+    @ValidPassword
     private String password;
 
     @NotEmpty(message="City cannot be empty or null")
@@ -56,14 +56,14 @@ public class User {
     @Size(min = 2, max = 50, message = "Address must be between 2 and 50 characters")
     private String address;
 
-    //@ValidDate
+    @ValidDate
     private String dateOfBirth;
 
     @Column(unique=true)
     @Email(message="Email must be valid")
     private String email;
 
-    //@ValidPhoneNumber
+    @ValidPhoneNumber
     private String phoneNumber;
 
     @Column(columnDefinition="tinyint(1) default 1")

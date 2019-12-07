@@ -1,8 +1,10 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.saving_account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;

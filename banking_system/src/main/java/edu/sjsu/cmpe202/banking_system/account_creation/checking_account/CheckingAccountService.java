@@ -102,22 +102,4 @@ public class CheckingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not have a checking account");
     }
 
-
-    /*public void withdraw(int account_no, double transaction_amount)
-	{
-		double balance;
-		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
-		balance = account_to_be_updated.getBalance() - transaction_amount;
-		account_to_be_updated.setBalance(balance);
-		checkingAccountRepository.save(account_to_be_updated);
-	}
-
-	public void deposit(int account_no, double transaction_amount)
-	{
-		double balance;
-		CheckingAccount account_to_be_updated = checkingAccountRepository.findById(account_no).get();
-		balance = account_to_be_updated.getBalance() + transaction_amount;
-		account_to_be_updated.setBalance(balance);
-		checkingAccountRepository.save(account_to_be_updated);
-	}*/
 }

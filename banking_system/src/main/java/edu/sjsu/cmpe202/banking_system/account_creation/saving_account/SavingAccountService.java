@@ -90,10 +90,10 @@ public class SavingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
         }
         if(user.get().getSavingAccount()!= null) {
-            //untie User to CheckingAccount
+            //untie User to SavingAccount
             user.get().getSavingAccount().setUser(null);
 
-            //untie CheckingAccount to User
+            //untie SavingAccount to User
             user.get().setSavingAccount(null);
             userRepository.save(user.get());
             throw  new ResponseStatusException(OK, "Successfully deleted saving account");
