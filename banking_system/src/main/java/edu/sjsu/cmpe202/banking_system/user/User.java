@@ -14,6 +14,8 @@ import edu.sjsu.cmpe202.banking_system.constraint.ValidPhoneNumber;
 import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccount;
 import edu.sjsu.cmpe202.banking_system.payee.Payee;
+import edu.sjsu.cmpe202.banking_system.recurring_transfer.RecurringTransfer;
+
 import org.hibernate.annotations.ColumnDefault;
 
 import java.util.*;
@@ -87,9 +89,23 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private Set<BillPayment> billpayment;
+    
+    
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<RecurringTransfer> recurringTransfer;
 
 
-    public Integer getId() {
+    public Set<RecurringTransfer> getRecurringTransfer() {
+		return recurringTransfer;
+	}
+
+	public void setRecurringTransfer(RecurringTransfer recurringTransfer) {
+		this.recurringTransfer.add(recurringTransfer);
+	}
+
+	public Integer getId() {
         return id;
     }
 
