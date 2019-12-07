@@ -109,10 +109,10 @@ December 4   | Communication  | Sharing the implementation helped in reducing wo
 ### Prathyusha 
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
-October 26   | Communication  | 
-November 2   |                | 
-November 9   |                | 
-November 20  |   Feedback     | 
-November 23  |                |
-December 4   |                |
+October 26   | Communication  | we communicated face to face regularly.
+November 2   | Communication  | We Created Backlog effectively by discussing various aspects of the project
+November 9   |  Simplicity    | We designed what was required for the project and no more
+November 20  |   Feedback     | We Demonstrated and listend carefully and made any changes needed. We talked about the project and adapt our process to it, not the other way around.
+November 23  | Communication  |  We worked together on everything from requirements to code. We created the best solution to our problem that we can together.
+December 4   | Communication  | We sat together and implemented the pending backlogs by bringing them to none
 
