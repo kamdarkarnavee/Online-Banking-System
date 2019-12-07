@@ -8,6 +8,7 @@ import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,6 +18,9 @@ public class Payee {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message="name cannot be empty or null")
+    @Size(min = 2, max = 50, message = "name must be between 2 and 50 characters")
     private String name;
 
     @JsonIgnore
@@ -35,6 +39,8 @@ public class Payee {
     @ValidRoutingNumber
     private long routing_number;
 
+    @Column(columnDefinition="tinyint(1) default 0")
+    @NotNull
     private boolean approved;
 
     @NotEmpty(message="payee_description cannot be empty or null")
