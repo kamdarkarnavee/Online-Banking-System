@@ -23,7 +23,7 @@ public class CheckingAccount {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @DecimalMin("0.00")
+    //@DecimalMin("0.00")
     private double balance;
 
     private Date account_creation_date;
