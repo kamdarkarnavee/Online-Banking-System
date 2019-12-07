@@ -1,6 +1,5 @@
 package edu.sjsu.cmpe202.banking_system.payee;
 
-import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import edu.sjsu.cmpe202.banking_system.routing.Routing;
 import edu.sjsu.cmpe202.banking_system.routing.RoutingRepository;
 import edu.sjsu.cmpe202.banking_system.user.User;
@@ -9,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -25,7 +27,7 @@ public class PayeeService {
     @Autowired
     private RoutingRepository routingRepository;
 
-    public List<Payee> getAllPayees(){
+    public List<Payee> getAllPayees() {
         List<Payee> payees = new ArrayList<>();
         payeeRepository.findAll()
                 .forEach(payees::add);
@@ -38,7 +40,7 @@ public class PayeeService {
     public Payee addPayee(int user_id, Payee payee) {
         Optional<User> user = userRepository.findById(user_id);
         if (!user.isPresent()) {
-            throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
+            throw new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
         }
 
         //tie User to Payee
@@ -58,13 +60,12 @@ public class PayeeService {
     public Payee getPayeeById(Integer id) {
         if (payeeRepository.findById(id).isPresent()) {
             return payeeRepository.findById(id).get();
-        }
-        else {
+        } else {
             return null;
         }
     }
 
-    public boolean approvePayee(int user_id, Payee payee) {
+    public boolean approvePayee(int user_id) {
         Optional<User> user = userRepository.findById(user_id);
 
         if (!user.isPresent()) {
@@ -72,49 +73,53 @@ public class PayeeService {
         }
         if (user.get().getAdmin()) {
             List<Payee> unapprovedPayees = getUnapprovedPayees();
-            if(unapprovedPayees.size() == 0){
+            if (unapprovedPayees.size() == 0) {
                 throw new ResponseStatusException(NOT_FOUND, "You don't have payees to approve");
-            }
-            else
-            {
-                try
-                {
-                for(int i=0;i<unapprovedPayees.size();i++){
-                    Routing r = routingRepository.findByBankName(unapprovedPayees.get(i).getBank_name());
-                    if (unapprovedPayees.get(i).getRouting_number() == r.getRoutingNumber()) {
-                        payeeRepository.save(unapprovedPayees.get(i));
+            } else {
+
+                    for (int i = 0; i < unapprovedPayees.size(); i++) {
+                        Routing r = routingRepository.findByBankName(unapprovedPayees.get(i).getBank_name());
+                        if (unapprovedPayees.get(i).getRouting_number() == r.getRoutingNumber()) {
+                            unapprovedPayees.get(i).setApproved(true);
+                            payeeRepository.save(unapprovedPayees.get(i));
+                        }
+                        else {
+                            System.out.println("Routing Number does not match for payee .Deleting payee" + unapprovedPayees.get(i).getId());
+                            payeeRepository.deleteById(unapprovedPayees.get(i).getId());
+                        }
+
                     }
-                    else
-                    {
-                        throw new ResponseStatusException(BAD_REQUEST, "Routing number is wrong for BANK : " +unapprovedPayees.get(i).getBank_name() );
-                    }
-
-                }
-                return true;
-            }
-                catch (Exception e){System.out.println("Wrong Routing Number");};
+                    return true;
             }
 
 
-        }
-        else {
+        } else {
             throw new ResponseStatusException(BAD_REQUEST, "You don't have admin privileges.");
 
         }
-        return false;
     }
 
-    public List<Payee> getUnapprovedPayees()
-    {
+    public List<Payee> getUnapprovedPayees() {
         List<Payee> unapprovedpayee = new ArrayList<>();
         unapprovedpayee.addAll((Collection<? extends Payee>) payeeRepository.findAll());
         List<Payee> payees = new ArrayList<>();
-        for(Payee p : unapprovedpayee){
-            if(!p.isApproved()){
+        for (Payee p : unapprovedpayee) {
+            if (!p.isApproved()) {
                 payees.add(p);
             }
         }
         return payees;
     }
 
+    public List<Payee> getPayeesbyUserId(int user_id) {
+        List<Payee> payees = new ArrayList<>();
+        payees.addAll((Collection<? extends Payee>) payeeRepository.findAll());
+        List<Payee> myPayees = new ArrayList<>();
+        for (Payee p : payees) {
+            if (p.getUser().getId() == user_id) {
+                myPayees.add(p);
+            }
+        }
+        return myPayees;
+    }
 }

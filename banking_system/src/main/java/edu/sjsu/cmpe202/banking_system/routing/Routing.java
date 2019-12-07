@@ -7,16 +7,18 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="routing_table")
+@Table(name="routing_table",uniqueConstraints={@UniqueConstraint(columnNames={"bankName","routingNumber"})})
 public class Routing {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
+
     @NotEmpty(message="Bank Name cannot be empty or null")
     @Size(min = 2, max = 50, message = "Bank Name must be between 2 and 50 characters")
     private String bankName;
+
 
     @ValidRoutingNumber
     private long routingNumber;
