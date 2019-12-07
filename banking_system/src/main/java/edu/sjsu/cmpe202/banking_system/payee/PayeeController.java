@@ -16,7 +16,7 @@ public class PayeeController {
     private PayeeService payeeService;
 
     @RequestMapping("/{user_id}/allpayees")
-    public List<Payee> getAllPayees(@PathVariable(value = "user_id") int user_id){
+    public List<Payee> getPayeesbyUserId(@PathVariable(value = "user_id") int user_id){
         return  payeeService.getAllPayees();
     }
 
@@ -31,8 +31,8 @@ public class PayeeController {
     }
 
     @PostMapping(value = "/{user_id}/approvepayee")
-    public boolean approvePayee(@PathVariable(value = "user_id") int user_id,@RequestBody Payee payee){
-        boolean status = payeeService.approvePayee(user_id,payee);
+    public boolean approvePayee(@PathVariable(value = "user_id") int user_id){
+        boolean status = payeeService.approvePayee(user_id);
         return status;
     }
 
