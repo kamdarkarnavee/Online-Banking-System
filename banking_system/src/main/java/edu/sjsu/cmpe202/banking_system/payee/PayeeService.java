@@ -84,8 +84,8 @@ public class PayeeService {
                             payeeRepository.save(unapprovedPayees.get(i));
                         }
                         else {
-                            System.out.println("Routing Number does not match for payee .Deleting payee" + unapprovedPayees.get(i).getId());
-                            payeeRepository.deleteById(unapprovedPayees.get(i).getId());
+                            System.out.println("Routing Number does not match for payee ." + unapprovedPayees.get(i).getId());
+                            //payeeRepository.deleteById(unapprovedPayees.get(i).getId());
                         }
 
                     }
