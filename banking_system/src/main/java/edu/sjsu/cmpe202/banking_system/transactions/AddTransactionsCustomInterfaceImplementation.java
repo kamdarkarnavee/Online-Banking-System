@@ -234,7 +234,7 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 
 	public void performtransactionsBillPayment(Transactions transaction)
 	{
-		long from_account, to_account;
+		long from_account;
 		double transaction_amount;
 		String account_type;
 		transaction_amount = transaction.getTransaction_amount();
