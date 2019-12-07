@@ -1,12 +1,15 @@
 package edu.sjsu.cmpe202.banking_system.bill_payment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.payee.Payee;
 import edu.sjsu.cmpe202.banking_system.transactions.Transactions;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,7 +35,9 @@ public class BillPayment {
 
     private String transaction_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+    @ValidAccountNumber
     private long from_account;
+    @ValidAccountNumber
     private long to_account;
 
     @DecimalMin("1.00")
@@ -41,8 +46,12 @@ public class BillPayment {
     @DecimalMin("0.00")
     private double balance;
 
+    @NotEmpty(message="transaction_details cannot be empty or null")
+    @Size(min = 2, max = 50, message = "transaction_details must be between 2 and 50 characters")
     private String transaction_details;
 
+    @NotEmpty(message="transaction_description cannot be empty or null")
+    @Size(min = 2, max = 50, message = "transaction_description must be between 2 and 50 characters")
     private String transaction_description;
 
     enum Period{
@@ -50,20 +59,6 @@ public class BillPayment {
         MONTHLY
     }
     private Period period;
-
-    enum DayOfWeek{
-        SUNDAY,
-        MONDAY,
-        TUESDAY,
-        WEDNESDAY,
-        THURSDAY,
-        FRIDAY,
-        SATURDAY
-    }
-
-    private DayOfWeek dayOfWeek;
-
-    private int dateOfMonth;
 
     private String final_date  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
@@ -170,22 +165,7 @@ public class BillPayment {
     public void setPeriod(Period period) {
         this.period = period;
     }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public int getDateOfMonth() {
-        return dateOfMonth;
-    }
-
-    public void setDateOfMonth(int dateOfMonth) {
-        this.dateOfMonth = dateOfMonth;
-    }
+    
 
     public Date getFinal_date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

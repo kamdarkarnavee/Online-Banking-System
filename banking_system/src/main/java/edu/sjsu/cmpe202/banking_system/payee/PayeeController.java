@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class PayeeController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/{user_id}/addpayee")
-    public void addPayee(@PathVariable(value = "user_id") int user_id,@RequestBody Payee payee) {
+    public void addPayee(@Valid @PathVariable(value = "user_id") int user_id,@RequestBody Payee payee) {
         payeeService.addPayee(user_id,payee);
     }
 
