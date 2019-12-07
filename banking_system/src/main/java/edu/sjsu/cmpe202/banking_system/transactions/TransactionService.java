@@ -18,9 +18,4 @@ public class TransactionService {
         transactionRepository.save(transactions);
     }
 
-	/*public static Iterable<User> getAllTransactions() {
-		List<User> transactions = new ArrayList<>();
-		transactionRepository.findAll().forEach(transactions::add);
-        return transactions;
-	}*/
 }

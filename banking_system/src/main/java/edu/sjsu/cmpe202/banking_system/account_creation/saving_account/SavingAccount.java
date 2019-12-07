@@ -15,6 +15,7 @@ import java.util.Date;
 @Qualifier("SavingAccount")
 public class SavingAccount {
 
+    @ValidAccountNumber
     @Id
     private long saving_account_no;
 

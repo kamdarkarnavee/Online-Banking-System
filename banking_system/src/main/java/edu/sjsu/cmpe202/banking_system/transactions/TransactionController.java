@@ -25,11 +25,11 @@ public class TransactionController {
     {
         transactionService.addtransactions(transactions);
     }
-    
+
     /*@GetMapping("/all")
     public Iterable<User> getAllTransactions() {
         return TransactionService.getAllTransactions();
     }*/
-    
+
     
 }

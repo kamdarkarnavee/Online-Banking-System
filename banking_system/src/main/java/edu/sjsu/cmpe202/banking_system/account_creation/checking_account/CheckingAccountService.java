@@ -61,8 +61,8 @@ public class CheckingAccountService {
 
         try {
             if (checkingAccountRepository.findById(account.getChecking_account_no()).isEmpty()) {
-                account.setAccount_creation_date(new Date());
                 account.setUser(user.get());
+                account.setAccount_creation_date(new Date());
                 CheckingAccount newAccount = checkingAccountRepository.save(account);
 
                 //tie CheckingAccount to User

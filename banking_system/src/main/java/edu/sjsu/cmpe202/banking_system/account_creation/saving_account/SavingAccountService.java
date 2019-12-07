@@ -61,8 +61,8 @@ public class SavingAccountService {
 
         try {
             if (savingAccountRepository.findById(account.getSaving_account_no()).isEmpty()) {
-                account.setAccount_creation_date(new Date());
                 account.setUser(user.get());
+                account.setAccount_creation_date(new Date());
                 SavingAccount newAccount = savingAccountRepository.save(account);
 
                 //tie SavingAccount to User
