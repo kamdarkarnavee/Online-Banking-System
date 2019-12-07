@@ -30,7 +30,11 @@
 ![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/addcredit.JPG)
 
 ## Design Decisions
-
+ - APIs created on Spring Boot Framework. 
+     - Programming Language: Java
+     - Input and Output: Json
+     - Added Validation and error handling
+ - Database used: MySQL
  - For transactions part, transfer between accounts, recurring transfer, recurring bill payment, manual refunds by the admin, adding credit would need either to deposit or withdraw money from saving or checking account to complete transaction
  - An interface called "AddTransactionCustomInterface" was created so that all the functionalities that perform transactions would be performing transactions using this interface.
  - Two more additional interfaces- "SavingAccountCustomInterface" and "CheckingAccountCustomInterface" were created to perform deposit and withdraw functions for transacting through the accounts.
@@ -44,8 +48,8 @@ October 26   | Understand Requirements              | Create Meeting Minute Docu
 November 2   | Create Meeting Minute Documents      | Set Up a MySQL database on an EC2    | None
 November 9   | Setting Up Database                  | Learn Spring Boot                    | None
 November 20  | Learn Spring Boot                    | Add, get, and delete user            | None
-November 23  |  Add, get, and delete user           | Check due balances, Check balance, close existing account | All tasks I am planning on work on next are blocked. 'Creating accounts' needs to be finished first.
-December 4   |                                      |                                      |
+November 23  |  Add, get, and delete user           | Check due balances, Check balance, close existing account. Finish meeting minutes docs. Create wireframes. Do extra credit. | All APIs I am planning on work on next are blocked. 'Creating accounts' needs to be finished first. I can't work on the extra credit until the APIs are done.
+December 4   | Check due balances, Check balance, close existing account. | Few days to complete the work I didn't get to do before Dec 4. | Extra credit can't get started until everything else that is required is finished.    
 
 ### Karnavee
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
