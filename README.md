@@ -6,6 +6,9 @@
 3. Mrunali Sanjay Khandat 
 4. Prathyusha Lingamallu
 
+## Component Diagram
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/Diagrams/Banking_system_component_diagram.png)
+
 ## Wireframes
 ![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/homepage.JPG)
 ![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/Signup.JPG)
