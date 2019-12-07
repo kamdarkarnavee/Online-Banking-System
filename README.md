@@ -44,7 +44,7 @@ October 26   | Understand Requirements              |Design Datbase Schema/Produ
 November 2   | Design Database schema               |     Learn Spring boot                | None
 November 9   | Learnt Spring boot                   |     ADD Payee/Remove Payee           | None
 November 20  | Add Payee/Remove Payee               |      Approve Payee                   | None
-November 23  |          Approve Payee               |    One time/Recurring bill payment   | None
+November 23  |          Approve Payee               |    One time/Recurring bill payment   | Transactions API
 December 4   | One time bills/recurring bills       | Validations,UI Wireframes/Burndown   | None
 
 ## XP Core Values
