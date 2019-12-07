@@ -10,6 +10,12 @@
 
 ![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/Diagrams/Banking_system_component_diagram.png)
 
+## Design Decisions
+
+- For transactions part, transfer between accounts, recurring transfer, recurring bill payment, manual refunds by the admin, adding credit would need either to deposit or withdraw money from saving or checking account to complete transaction
+- An interface called "AddTransactionCustomInterface" was created so that all the functionalities that perform transactions would be performing transactions using this interface.
+- Two more additional interfaces- "SavingAccountCustomInterface" and "CheckingAccountCustomInterface" were created to perform deposit and withdraw functions for transacting through the accounts.
+
 ## Weekly Scrum Report
 ### Janette 
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
