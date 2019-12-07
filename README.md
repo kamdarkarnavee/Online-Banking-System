@@ -54,13 +54,12 @@ December 4   | Check due balances, Check balance, close existing account. | Few 
 ### Karnavee
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
 -------------|--------------------------------------|--------------------------------------|------------------------
-October 26   | Understand Requirements              |                                      | None
-November 2   |                                      |                                      | None
-November 9   |                                      |                                      | None
-November 20  |                                      |                                      | None
-November 23  |                                      |                                      |
-December 4   |                                      |                                      |
-
+October 26   | Understand Requirements              | Explore frameworks for APIs creation & Decide technology stack | None
+November 2   | Explored different frameworks and Finalized Spring Boot | Create product backlog and design database schema and tables creation | None
+November 9   | Designed Datbase Schema & Product Backlog | Continue learning Spring Boot   | None
+November 20  | Learn Spring Boot and populated tables with dummy data | Create Checking and Savings Account                                     | None
+November 23  | Created Checking and Savings Account | Modify account creation APIs and implement internal transfers and view/search transactions | Transactions API
+December 4   | Transfer between accounts & View/Search transactions | Validations, UI Wireframes | None
 ### Mrunali
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
 -------------|--------------------------------------|--------------------------------------|------------------------
