@@ -53,20 +53,20 @@ public class BillPaymentService {
 
         Optional<Payee> payee = payeeRepository.findById(payee_id);
         if (!payee.isPresent())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + user_id + " does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + payee_id + " does not exist");
         billpayment.setPayee(payee.get());
 
-        //ystem.out.println("Approved" +billpayment.getPayee());
+
         if(!billpayment.getPayee().isApproved()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Payee with id " + payee_id + " is not approved");
         }
         if (savingAccountRepository.existsById(from_account) || checkingAccountRepository.existsById(from_account)) {
 
 
-            //System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+from_account + payee.get().getAccount_number_payee());
+
             billpayment.setFrom_account(from_account);
             billpayment.setTo_account(billpayment.getPayee().getAccount_number_payee());
-            //billpayment.setfromAndtoAccount(billpayment.getTransactions(),from_account, (long) billpayment.getPayee().getAccount_number_payee());
+
             billpayment.setStatus(BillPayment.Status.PENDING);
             BillPayment newbillpayment = billPaymentRepository.save(billpayment);
 
@@ -83,7 +83,7 @@ public class BillPaymentService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         query_date = formatter.format(date);
         var billPayments = (List<BillPayment>) billPaymentRepository.findByDate(query_date);
-        //System.out.println("Query and date: " + billPayments + query_date);
+        
         addTransactions(billPayments);
     }
 
