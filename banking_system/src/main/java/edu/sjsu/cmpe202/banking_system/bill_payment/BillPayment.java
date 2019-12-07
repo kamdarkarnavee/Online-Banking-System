@@ -165,7 +165,7 @@ public class BillPayment {
     public void setPeriod(Period period) {
         this.period = period;
     }
-    
+
 
     public Date getFinal_date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

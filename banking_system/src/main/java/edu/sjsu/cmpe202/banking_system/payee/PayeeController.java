@@ -30,13 +30,22 @@ public class PayeeController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{user_id}/addpayee")
-    public void addPayee(@Valid @PathVariable(value = "user_id") int user_id,@RequestBody Payee payee) {
+    @PostMapping(value = "/{user_id}/approvepayee")
+    public boolean approvePayee(@PathVariable(value = "user_id") int user_id,@RequestBody Payee payee){
+        boolean status = payeeService.approvePayee(user_id,payee);
+        return status;
+    }
+
+
+    @PostMapping(value = "/{user_id}/addpayee")
+    public Payee addPayee(@Valid @PathVariable(value = "user_id") int user_id,@RequestBody Payee payee) {
         payeeService.addPayee(user_id,payee);
+        return payee;
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/{user_id}/deletepayee/{id}")
     public void deletePayee(@PathVariable(value = "user_id") int user_id,@PathVariable Integer id){
         payeeService.deletePayee(id);
     }
+
 }

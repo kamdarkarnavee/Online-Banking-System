@@ -51,12 +51,17 @@ public class BillPaymentService {
         }
         billpayment.setUser(user.get());
 
+        Optional<Payee> payee = payeeRepository.findById(payee_id);
+        if (!payee.isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + user_id + " does not exist");
+
+        if(!billpayment.getPayee().isApproved()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Payee with id " + user_id + " is not approved");
+        }
         if (savingAccountRepository.existsById(from_account) || checkingAccountRepository.existsById(from_account)) {
-            Optional<Payee> payee = payeeRepository.findById(payee_id);
-            if (!payee.isPresent())
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + user_id + " does not exist");
+
             billpayment.setPayee(payee.get());
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+from_account + payee.get().getAccount_number_payee());
+            //System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+from_account + payee.get().getAccount_number_payee());
             billpayment.setFrom_account(from_account);
             billpayment.setTo_account(billpayment.getPayee().getAccount_number_payee());
             //billpayment.setfromAndtoAccount(billpayment.getTransactions(),from_account, (long) billpayment.getPayee().getAccount_number_payee());

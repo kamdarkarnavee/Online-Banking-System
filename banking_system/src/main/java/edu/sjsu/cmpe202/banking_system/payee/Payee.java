@@ -35,10 +35,13 @@ public class Payee {
     @ValidRoutingNumber
     private long routing_number;
 
-    private boolean is_approved;
+    private boolean approved;
+
     @NotEmpty(message="payee_description cannot be empty or null")
     @Size(min = 2, max = 50, message = "payee description must be between 2 and 50 characters")
     private String payee_description;
+
+
 
     @NotEmpty(message="Bank Name cannot be empty or null")
     @Size(min = 2, max = 50, message = "Bank Name must be between 2 and 50 characters")
@@ -90,11 +93,11 @@ public class Payee {
     }
 
     public boolean isIs_approved() {
-        return is_approved;
+        return approved;
     }
 
-    public void setIs_approved(boolean is_approved) {
-        this.is_approved = is_approved;
+    public void setIs_approved(boolean approved) {
+        this.approved = approved;
     }
     public String getPayee_description() {
         return payee_description;
@@ -110,5 +113,13 @@ public class Payee {
 
     public void setBank_name(String bank_name) {
         this.bank_name = bank_name;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 }
