@@ -6,6 +6,10 @@
 3. Mrunali Sanjay Khandat 
 4. Prathyusha Lingamallu
 
+## Component Diagram
+
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/Diagrams/Banking_system_component_diagram.png)
+
 ## Weekly Scrum Report
 ### Janette 
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
