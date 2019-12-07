@@ -56,10 +56,11 @@ Meeting Date | What tasks did I work on / complete? |  What am I planning to wor
 -------------|--------------------------------------|--------------------------------------|------------------------
 October 26   | Understand Requirements              | Explore frameworks for APIs creation & Decide technology stack | None
 November 2   | Explored different frameworks and Finalized Spring Boot | Create product backlog and design database schema and tables creation | None
-November 9   | Designed Datbase Schema & Product Backlog | Continue learning Spring Boot   | None
+November 9   | Designed Datbase Schema & Product Backlog | Learn Spring Boot   | None
 November 20  | Learn Spring Boot and populated tables with dummy data | Create Checking and Savings Account                                     | None
-November 23  | Created Checking and Savings Account | Modify account creation APIs and implement internal transfers and view/search transactions | Transactions API
+November 23  | Created Checking and Savings Account APIs | Modify account APIs and implement internal transfers and view/search transactions | Transactions API
 December 4   | Transfer between accounts & View/Search transactions | Validations, UI Wireframes | None
+
 ### Mrunali
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
 -------------|--------------------------------------|--------------------------------------|------------------------
@@ -95,12 +96,12 @@ December 4   | Communication  | The team got together and discussed solutions fo
 ### Karnavee
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
-October 26   |                | 
-November 2   |                | 
-November 9   |                | 
-November 20  |                | 
-November 23  |                |
-December 4   |                |
+October 26   | Communication  | We met and discussed the problem statement and understood the requirements
+November 2   | Communication  | We communicated face to face and expressed ourselves clearly regarding our opinions and explorations of which technology stack would be better to opt
+November 9   | Communication  | Coordinated and finalized the product backlog and no. of hours required for completion of each task
+November 20  | Simplicity     | We shortlisted what was required for the project and divided it such that it would create least dependency and complications
+November 23  | Feedback       | We communicated what tasks were blocked and everyone took apt steps to resolve the blockage based on the feedback each one shared and received
+December 4   | Communication  | Shared the implementation to reduce workload of team members and helped overcome code redundancy/duplication and inconsistency conflicts
 
 ### Mrunali 
 Meeting Date | XP Core Value  |  Explanation
@@ -115,7 +116,7 @@ December 4   | Communication  | Sharing the implementation helped in reducing wo
 ### Prathyusha 
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
-October 26   | Communication  | we communicated face to face regularly.
+October 26   | Communication  | We communicated face to face regularly.
 November 2   | Communication  | We Created Backlog effectively by discussing various aspects of the project
 November 9   |  Simplicity    | We designed what was required for the project and no more
 November 20  |   Feedback     | We Demonstrated and listend carefully and made any changes needed. We talked about the project and adapt our process to it, not the other way around.
