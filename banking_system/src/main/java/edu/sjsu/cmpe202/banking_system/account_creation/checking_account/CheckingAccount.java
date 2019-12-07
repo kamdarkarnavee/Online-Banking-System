@@ -14,16 +14,16 @@ import java.util.Date;
 @Qualifier("CheckingAccount")
 public class CheckingAccount {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @ValidAccountNumber
     private long checking_account_no;
-   // private int user_id;
+
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-    //@DecimalMin("0.00")
+    @DecimalMin("0.00")
     private double balance;
 
     private Date account_creation_date;

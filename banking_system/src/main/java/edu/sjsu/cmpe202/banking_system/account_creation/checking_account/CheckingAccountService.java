@@ -1,19 +1,17 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.checking_account;
 
-import edu.sjsu.cmpe202.banking_system.account_creation.saving_account.SavingAccount;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import edu.sjsu.cmpe202.banking_system.user.UserRepository;
-import edu.sjsu.cmpe202.banking_system.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
 @Service
 public class CheckingAccountService {
@@ -61,14 +59,25 @@ public class CheckingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
         }
 
-        //tie User to CheckingAccount
-        account.setUser(user.get());
-        CheckingAccount newAccount = checkingAccountRepository.save(account);
+        try {
+            if (checkingAccountRepository.findById(account.getChecking_account_no()).isEmpty()) {
+                account.setAccount_creation_date(new Date());
+                account.setUser(user.get());
+                CheckingAccount newAccount = checkingAccountRepository.save(account);
 
-        //tie CheckingAccount to User
-        user.get().setCheckingAccount(newAccount);
+                //tie CheckingAccount to User
+                user.get().setCheckingAccount(newAccount);
 
-        return newAccount;
+                return newAccount;
+
+            } else {
+                throw new ResponseStatusException(NOT_ACCEPTABLE, "Entered Existing User Id or Account number");
+            }
+
+        } catch (Exception e) {
+            throw new ResponseStatusException(NOT_ACCEPTABLE, "Entered Existing User Id or Account number");
+        }
+
 
     }
 

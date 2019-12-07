@@ -1,6 +1,5 @@
 package edu.sjsu.cmpe202.banking_system.account_creation.saving_account;
 
-import edu.sjsu.cmpe202.banking_system.account_creation.checking_account.CheckingAccount;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import edu.sjsu.cmpe202.banking_system.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
 @Service
 public class SavingAccountService {
@@ -60,14 +59,24 @@ public class SavingAccountService {
             throw  new ResponseStatusException(NOT_FOUND, "Author with id " + user_id + " does not exist");
         }
 
-        //tie User to CheckingAccount
-        account.setUser(user.get());
-        SavingAccount newAccount = savingAccountRepository.save(account);
+        try {
+            if (savingAccountRepository.findById(account.getSaving_account_no()).isEmpty()) {
+                account.setAccount_creation_date(new Date());
+                account.setUser(user.get());
+                SavingAccount newAccount = savingAccountRepository.save(account);
 
-        //tie CheckingAccount to User
-        user.get().setSavingAccount(newAccount);
+                //tie SavingAccount to User
+                user.get().setSavingAccount(newAccount);
 
-        return newAccount;
+                return newAccount;
+
+            } else {
+                throw new ResponseStatusException(NOT_ACCEPTABLE, "Entered Existing User Id or Account number");
+            }
+
+        } catch (Exception e) {
+            throw new ResponseStatusException(NOT_ACCEPTABLE, "Entered Existing User Id or Account number");
+        }
 
     }
 
