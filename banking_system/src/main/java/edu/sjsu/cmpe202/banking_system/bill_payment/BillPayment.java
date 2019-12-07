@@ -60,20 +60,6 @@ public class BillPayment {
     }
     private Period period;
 
-    enum DayOfWeek{
-        SUNDAY,
-        MONDAY,
-        TUESDAY,
-        WEDNESDAY,
-        THURSDAY,
-        FRIDAY,
-        SATURDAY
-    }
-
-    private DayOfWeek dayOfWeek;
-
-    private int dateOfMonth;
-
     private String final_date  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     enum Status{
@@ -179,22 +165,7 @@ public class BillPayment {
     public void setPeriod(Period period) {
         this.period = period;
     }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public int getDateOfMonth() {
-        return dateOfMonth;
-    }
-
-    public void setDateOfMonth(int dateOfMonth) {
-        this.dateOfMonth = dateOfMonth;
-    }
+    
 
     public Date getFinal_date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

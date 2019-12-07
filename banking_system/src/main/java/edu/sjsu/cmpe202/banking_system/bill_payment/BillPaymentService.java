@@ -76,7 +76,7 @@ public class BillPaymentService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         query_date = formatter.format(date);
         var billPayments = (List<BillPayment>) billPaymentRepository.findByDate(query_date);
-        System.out.println("Query and date: " + billPayments + query_date);
+        //System.out.println("Query and date: " + billPayments + query_date);
         addTransactions(billPayments);
     }
 
