@@ -63,7 +63,7 @@ public class User {
     @Email(message="Email must be valid")
     private String email;
 
-    //@ValidPhoneNumber
+    @ValidPhoneNumber
     private String phoneNumber;
 
     @Column(columnDefinition="tinyint(1) default 1")

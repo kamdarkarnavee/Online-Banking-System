@@ -2,6 +2,7 @@ package edu.sjsu.cmpe202.banking_system.account_creation.checking_account;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.user.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -14,7 +15,7 @@ import java.util.Date;
 @Qualifier("CheckingAccount")
 public class CheckingAccount {
     @Id
-//    @ValidAccountNumber
+    @ValidAccountNumber
     private long checking_account_no;
 
 

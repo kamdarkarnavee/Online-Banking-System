@@ -2,6 +2,7 @@ package edu.sjsu.cmpe202.banking_system.transactions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.sjsu.cmpe202.banking_system.bill_payment.BillPayment;
+import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
@@ -17,15 +18,17 @@ public class Transactions {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int transaction_id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user_id;
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User user_id;
 
     private Date transaction_date;
 
+    @ValidAccountNumber
     private long from_account;
 
+    @ValidAccountNumber
     private long to_account;
 
     @DecimalMin("1.00")
@@ -47,13 +50,13 @@ public class Transactions {
         this.transaction_id = transaction_id;
     }
 
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
-    }
+//    public User getUser_id() {
+//        return user_id;
+//    }
+//
+//    public void setUser_id(User user_id) {
+//        this.user_id = user_id;
+//    }
 
     public Date getTransaction_date() {
         return transaction_date;
