@@ -48,23 +48,40 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 
 		flag = savingaccountrepository.existsById(from_account);
 		
-		
 		if(flag == true)
 		{
 			account_type = "SAVING";
 			balance = get_transaction_balance(account_type, from_account);
 			update_transaction_balance(balance, transaction);
-			
-			savingaccountcustominterface.withdraw(from_account, transaction_amount);
+			if(transaction_amount <= balance)
+			{
+				savingaccountcustominterface.withdraw(from_account, transaction_amount);
+			}
+			else
+			{
+				System.out.println("Transaction Declined!");
+				update_transaction_details(transaction);
+			}
 			
 		}
 		else if(checkingaccountrepository.existsById(from_account))
 		{
 			account_type = "CHECKING";
-			balance = get_transaction_balance(account_type, from_account);	
+			balance = get_transaction_balance(account_type, from_account);
+	
 			update_transaction_balance(balance, transaction);
 
-			checkingaccountcustominterface.withdraw(from_account, transaction_amount);
+			if(transaction_amount > balance)
+			{
+				System.out.println("Transaction Declined!");
+				update_transaction_details(transaction);
+			}
+			else
+			{
+				checkingaccountcustominterface.withdraw(from_account, transaction_amount);
+
+			}
+
 		}
 		else
 		{
@@ -75,17 +92,31 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 		
 		
 		flag = savingaccountrepository.existsById(to_account);
-		if(flag == true)
+		if(transaction_amount <= balance)
 		{
-			savingaccountcustominterface.deposit(to_account, transaction_amount);
-			
-		}
-		else if(checkingaccountrepository.existsById(to_account))
-		{
-			checkingaccountcustominterface.deposit(to_account, transaction_amount);
-		}
-		else
-			System.out.println("to_account does not exist in our database, please try again");
+			if((flag == true) && (!(account_type.equals("NOT_DEFINED"))))
+			{
+					savingaccountcustominterface.deposit(to_account, transaction_amount);
+						
+			}
+			else if(checkingaccountrepository.existsById(to_account) && (!(account_type.equals("NOT_DEFINED"))))
+			{
+					checkingaccountcustominterface.deposit(to_account, transaction_amount);
+						
+			}
+			else
+				System.out.println("Enter account numbers, please try again");
+		}		
+	}
+	
+	/*
+	 * Update transaction details status to declined
+	 */
+	private void update_transaction_details(Transactions transaction) 
+	{
+			String details = "declined";
+			transaction.setTransaction_details(details);
+			transactionRepository.save(transaction);
 		
 	}
 	/*
@@ -115,7 +146,7 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 	}
 	/*
 	 * UPDATE BALANCE OF from_account in
-	 *  transaction table
+	 *  transaction table for all transactions except for manual_refunds and manual_credit
 	 */
 	public void update_transaction_balance(double balance, Transactions transaction)
 	{
@@ -169,7 +200,6 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 	 */
 	public void manual_credits_admin(Transactions transaction)
 	{
-		
 		long from_account, to_account;
 		double transaction_amount;
 		String account_type;
@@ -199,13 +229,8 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 			}
 			else
 				System.out.println("Ask user for correct account information");	
-		}
-		
-		
+		}	
 	}
 	
-	
-	
-
 
 }
