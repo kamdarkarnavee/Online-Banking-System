@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.Date;
 
 @RestController
 public class InternalTransferController {
@@ -45,6 +46,9 @@ public class InternalTransferController {
         if(flag){
             transaction.setFrom_account(from_account);
             transaction.setTo_account(to_account);
+            if(transaction.getTransaction_details() == null)
+                transaction.setTransaction_details("debited");
+            transaction.setTransaction_date(new Date());
             addTransaction.performtransactions(transaction);
         }
 
