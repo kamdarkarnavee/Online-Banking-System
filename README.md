@@ -30,12 +30,12 @@ December 4   |                                      |                           
 ### Mrunali
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
 -------------|--------------------------------------|--------------------------------------|------------------------
-October 26   | Understand Requirements              |                                      | None
-November 2   |                                      |                                      | None
-November 9   |                                      |                                      | None
-November 20  |                                      |                                      | None
-November 23  |                                      |                                      |
-December 4   |                                      |                                      |
+October 26   | Understand Requirements              | Decide the technology stack          | None
+November 2   | Decided the technology stack as Spring Boot, MySQL database, IDE- STS/IntelliJ                | Design database schema                    | Product backlog
+November 9   | Designed database schema, product backlog  | Learn Spring Boot- use of tables with Spring Boot, knowledge of REST APIs     | None
+November 20  | Learnt Spring boot, REST APIs, connecting MySQL to application | Update user  | Add user functionality
+November 23  | Updated user/customer's phone number, email, mailing address  | Adding manual transactions, credit  |  Transactions table, account creation
+December 4   | Added manual transactions, credit, approve/deny transactions, implemented deposit and withdraw functions that form basis for all transactions, recurring transfer  | Adding validations, component diagram |
 
 ### Prathyusha
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
@@ -71,12 +71,12 @@ December 4   |                |
 ### Mrunali 
 Meeting Date | XP Core Value  |  Explanation
 -------------|----------------|-------------
-October 26   |                | 
-November 2   |                | 
-November 9   |                | 
-November 20  |                | 
-November 23  |                |
-December 4   |                |
+October 26   | Communication  | As a champion of communication value, I encouraged communication in the team by arranging standup meetings every week
+November 2   | Communication  | Asked my team members to share their take on various available frameworks 
+November 9   | Communication  | Engaged my team members in conversation about the database schema, product backlog
+November 20  | Communication  | Encouraged everyone to ask doubts to each other, asking how a functionality is implemented 
+November 23  | Communication  | Engaged my team members in conversation about their current work, what they're planning to work on next 
+December 4   | Communication  | Sharing the implementation helped in reducing workload of individual team member
 
 ### Prathyusha 
 Meeting Date | XP Core Value  |  Explanation
