@@ -14,8 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 @Entity
@@ -34,7 +38,10 @@ public class RecurringTransfer {
 
     private String transaction_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+    @ValidAccountNumber
     private long from_account;
+    
+    @ValidAccountNumber
     private long to_account;
 
     @DecimalMin("1.00")
@@ -43,8 +50,12 @@ public class RecurringTransfer {
     @DecimalMin("0.00")
     private double balance;
 
+    @NotEmpty(message="transaction_details cannot be empty or null")
+    @Size(min = 2, max = 50, message = "transaction_details must be between 2 and 50 characters")
     private String transaction_details;
 
+    @NotEmpty(message="transaction_description cannot be empty or null")
+    @Size(min = 2, max = 50, message = "transaction_description must be between 2 and 50 characters")
     private String transaction_description;
 
     enum Period{
