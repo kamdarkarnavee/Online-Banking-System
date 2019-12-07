@@ -231,6 +231,49 @@ public class AddTransactionsCustomInterfaceImplementation implements AddTransact
 				System.out.println("Ask user for correct account information");	
 		}	
 	}
+
+	public void performtransactionsBillPayment(Transactions transaction)
+	{
+		long from_account, to_account;
+		double transaction_amount;
+		String account_type;
+		transaction_amount = transaction.getTransaction_amount();
+		boolean flag;
+		from_account = transaction.getFrom_account();
+
+
+		flag = savingaccountrepository.existsById(from_account);
+
+
+		if(flag == true)
+		{
+			account_type = "SAVING";
+			balance = get_transaction_balance(account_type, from_account);
+			update_transaction_balance(balance, transaction);
+
+			savingaccountcustominterface.withdraw(from_account, transaction_amount);
+
+		}
+		else if(checkingaccountrepository.existsById(from_account))
+		{
+			account_type = "CHECKING";
+			balance = get_transaction_balance(account_type, from_account);
+			update_transaction_balance(balance, transaction);
+
+			checkingaccountcustominterface.withdraw(from_account, transaction_amount);
+		}
+		else
+		{
+			account_type = "NOT_DEFINED";
+
+			System.out.println("from_account does not exist in our database, please try again");
+		}
+	}
+
+
+
+
 	
+
 
 }

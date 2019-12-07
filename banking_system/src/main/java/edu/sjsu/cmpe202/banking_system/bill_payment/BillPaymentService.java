@@ -49,23 +49,23 @@ public class BillPaymentService {
         if (!user.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Author with id " + user_id + " does not exist");
         }
-            billpayment.setUser_id(user.get());
+        billpayment.setUser(user.get());
 
-            if (savingAccountRepository.existsById(from_account) || checkingAccountRepository.existsById(from_account)) {
-                Optional<Payee> payee = payeeRepository.findById(payee_id);
-                if (!payee.isPresent())
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + user_id + " does not exist");
-                billpayment.setPayee(payee.get());
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+from_account + payee.get().getAccount_number_payee());
-                billpayment.setFrom_account(from_account);
-                billpayment.setTo_account(billpayment.getPayee().getAccount_number_payee());
-                //billpayment.setfromAndtoAccount(billpayment.getTransactions(),from_account, (long) billpayment.getPayee().getAccount_number_payee());
-                billpayment.setStatus(BillPayment.Status.PENDING);
-                BillPayment newbillpayment = billPaymentRepository.save(billpayment);
+        if (savingAccountRepository.existsById(from_account) || checkingAccountRepository.existsById(from_account)) {
+            Optional<Payee> payee = payeeRepository.findById(payee_id);
+            if (!payee.isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payee with id " + user_id + " does not exist");
+            billpayment.setPayee(payee.get());
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+from_account + payee.get().getAccount_number_payee());
+            billpayment.setFrom_account(from_account);
+            billpayment.setTo_account(billpayment.getPayee().getAccount_number_payee());
+            //billpayment.setfromAndtoAccount(billpayment.getTransactions(),from_account, (long) billpayment.getPayee().getAccount_number_payee());
+            billpayment.setStatus(BillPayment.Status.PENDING);
+            BillPayment newbillpayment = billPaymentRepository.save(billpayment);
 
-                user.get().setBillpayment(newbillpayment);
-            }
+            user.get().setBillpayment(newbillpayment);
         }
+    }
 
 
 
@@ -86,13 +86,28 @@ public class BillPaymentService {
         {
             SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date today_date = new Date();
-            billPaymentRepository.modifyingQueryInsertTransaction((formater.format(today_date)),billPayments.get(i).getFrom_account(),
+            Transactions transactions = new Transactions();
+            transactions.setTransaction_date((today_date));
+            transactions.setFrom_account(billPayments.get(i).getFrom_account());
+            transactions.setTo_account(billPayments.get(i).getTo_account());
+            transactions.setTransaction_amount(billPayments.get(i).getTransaction_amount());
+            transactions.setTransaction_details(billPayments.get(i).getTransaction_details());
+            transactions.setTransaction_description(billPayments.get(i).getTransaction_description());
+
+
+            addTransactionsCustomInterfaceImplementation.performtransactionsBillPayment(transactions);
+           /* billPaymentRepository.modifyingQueryInsertTransaction((formater.format(today_date)),billPayments.get(i).getFrom_account(),
                     billPayments.get(i).getTo_account(),billPayments.get(i).getTransaction_amount(),billPayments.get(i).getBalance(),
-                    billPayments.get(i).getTransaction_details(),billPayments.get(i).getTransaction_description());
+
+            billPayments.get(i).getTransaction_details(),billPayments.get(i).getTransaction_description(),billPayments.get(i).getUser_id().getId());*/
+
 
             if(billPayments.get(i).getPeriod() != null){
                 if(billPayments.get(i).getPeriod() == BillPayment.Period.WEEKLY){
                     updateBillPaymentWeekly(billPayments.get(i));
+                }
+                if(billPayments.get(i).getPeriod() == BillPayment.Period.MONTHLY){
+                    updateBillPaymentsStatusMonthly(billPayments.get(i));
                 }
 
             }
@@ -108,7 +123,7 @@ public class BillPaymentService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         try{
-        cal.setTime(sdf.parse(billPayment.getTransaction_date()));
+            cal.setTime(sdf.parse(billPayment.getTransaction_date()));
         }catch(ParseException e){
             e.printStackTrace();
         }
@@ -123,8 +138,34 @@ public class BillPaymentService {
         }
     }
 
+    public void updateBillPaymentsStatusMonthly(BillPayment billPayment){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        try{
+            cal.setTime(sdf.parse(billPayment.getTransaction_date()));
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        cal.add(Calendar.MONTH,1);
+        if(cal.getTime().compareTo(billPayment.getFinal_date()) < 0) {
+            billPayment.setTransaction_date(sdf.format(cal.getTime()));
+            billPaymentRepository.save(billPayment);
+        }
+        else
+        {
+            updateBillPaymentStatus(billPayment);
+        }
+    }
+
     public void updateBillPaymentStatus(BillPayment billPayment){
         billPayment.setStatus(BillPayment.Status.COMPLETED);
         billPaymentRepository.save(billPayment);
     }
+
+    public void deletePayee(int user_id, int payee_id,int id) {
+        billPaymentRepository.deleteById(id);
+    }
+
+
 }
