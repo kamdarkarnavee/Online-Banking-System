@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import edu.sjsu.cmpe202.banking_system.bill_payment.BillPayment;
 
 import java.util.List;
 
@@ -28,10 +27,10 @@ public class RecurringTransferController
     	recurringTransferService.findPendingTransactions();
     }
 
-    @DeleteMapping("/{from_account}/{to_account}/delete_RT")
-    public void deleterecurringtransfer(@PathVariable(value = "from_account") long from_account,
+    @DeleteMapping("/{user_id}/{from_account}/{to_account}/delete_RT")
+    public void deleterecurringtransfer(@PathVariable(value = "user_id") int user_id,@PathVariable(value = "from_account") long from_account,
     		@PathVariable(value = "to_account") long to_account)
     {
-    	recurringTransferService.deleteRT(from_account,to_account);
+    	recurringTransferService.deleteRT(user_id, from_account,to_account);
     }
 }

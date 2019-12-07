@@ -74,7 +74,7 @@ public class RecurringTransferService
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         query_date = formatter.format(date);
         var recurringtransfers = (List<RecurringTransfer>) recurringTransferRepository.findByDate(query_date);
-        System.out.println("Query and date: " + recurringtransfers + query_date);
+        System.out.println("Query and date: RT " + recurringtransfers + query_date);
         addTransactions(recurringtransfers);
 		
 	}
@@ -95,10 +95,6 @@ public class RecurringTransferService
 
 
             addTransactionsCustomInterfaceImplementation.performtransactions(transactions);
-           /* billPaymentRepository.modifyingQueryInsertTransaction((formater.format(today_date)),billPayments.get(i).getFrom_account(),
-                    billPayments.get(i).getTo_account(),billPayments.get(i).getTransaction_amount(),billPayments.get(i).getBalance(),
-
-            billPayments.get(i).getTransaction_details(),billPayments.get(i).getTransaction_description(),billPayments.get(i).getUser_id().getId());*/
 
 
             if(recurringtransfers.get(i).getPeriod() != null){
@@ -164,8 +160,8 @@ public class RecurringTransferService
         }
 	}
 
-	public void deleteRT(long from_account, long to_account) {
-		// TODO Auto-generated method stub
+	public void deleteRT(int user_id, long from_account, long to_account) 
+	{
 		
 	}
 

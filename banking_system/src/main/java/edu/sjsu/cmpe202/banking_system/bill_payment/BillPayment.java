@@ -3,7 +3,6 @@ package edu.sjsu.cmpe202.banking_system.bill_payment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.sjsu.cmpe202.banking_system.constraint.ValidAccountNumber;
 import edu.sjsu.cmpe202.banking_system.payee.Payee;
-import edu.sjsu.cmpe202.banking_system.transactions.Transactions;
 import edu.sjsu.cmpe202.banking_system.user.User;
 
 import javax.persistence.*;
