@@ -6,6 +6,24 @@
 3. Mrunali Sanjay Khandat 
 4. Prathyusha Lingamallu
 
+## Wireframes
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/homepage.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/Signup.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/Login.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/addapayee.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/removepayee.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/setuprecurringbillpayment.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/setuponetimebillpayment.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/setuprecurringtransfer.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/transfer.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/createnewaccount.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/requestsavingaccount.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/accountdetails.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/searchviewtransactions.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/searchviewtransactions2.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/addmanualrefunds.JPG)
+![title](https://github.com/gopinathsjsu/team-project-cmpe_202_team_project/blob/master/wireframes/addcredit.JPG)
+
 ## Weekly Scrum Report
 ### Janette 
 Meeting Date | What tasks did I work on / complete? |  What am I planning to work on next? | What tasks are blocked? 
