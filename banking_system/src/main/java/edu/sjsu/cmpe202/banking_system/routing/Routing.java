@@ -16,10 +16,10 @@ public class Routing {
 
     @NotEmpty(message="Bank Name cannot be empty or null")
     @Size(min = 2, max = 50, message = "Bank Name must be between 2 and 50 characters")
-    private String bank_name;
+    private String bankName;
 
     @ValidRoutingNumber
-    private long routing_number;
+    private long routingNumber;
 
     public int getId() {
         return id;
@@ -29,19 +29,19 @@ public class Routing {
         this.id = id;
     }
 
-    public String getBank_name() {
-        return bank_name;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setBank_name(String bank_name) {
-        this.bank_name = bank_name;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
-    public long getRouting_number() {
-        return routing_number;
+    public long getRoutingNumber() {
+        return routingNumber;
     }
 
-    public void setRouting_number(long routing_number) {
-        this.routing_number = routing_number;
+    public void setRoutingNumber(long routingNumber) {
+        this.routingNumber = routingNumber;
     }
 }

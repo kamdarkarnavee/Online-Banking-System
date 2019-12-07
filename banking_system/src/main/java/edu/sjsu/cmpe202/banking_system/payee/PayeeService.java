@@ -80,8 +80,8 @@ public class PayeeService {
                 try
                 {
                 for(int i=0;i<unapprovedPayees.size();i++){
-                    Routing r = routingRepository.findByBank_name(unapprovedPayees.get(i).getBank_name());
-                    if (unapprovedPayees.get(i).getRouting_number() == r.getRouting_number()) {
+                    Routing r = routingRepository.findByBankName(unapprovedPayees.get(i).getBank_name());
+                    if (unapprovedPayees.get(i).getRouting_number() == r.getRoutingNumber()) {
                         payeeRepository.save(unapprovedPayees.get(i));
                     }
                     else
