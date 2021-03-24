@@ -7,9 +7,9 @@
 4. Prathyusha Lingamallu
 
 ## Component Diagram
-![title](https://github.com/kamdarkarnavee/Online-Banking-System/tree/master/Diagrams/Banking_system_component_diagram.png)
+![title](https://github.com/kamdarkarnavee/Online-Banking-System/blob/master/Diagrams/Banking_system_component_diagram.png)
 <br>
-![title](https://github.com/kamdarkarnavee/Online-Banking-System/tree/master/Diagrams/deployment.JPG)
+![title](https://github.com/kamdarkarnavee/Online-Banking-System/blob/master/Diagrams/deployment.JPG)
 
 ## Wireframes
 ![title](https://github.com/kamdarkarnavee/Online-Banking-System/blob/master/wireframes/homepage.JPG)
